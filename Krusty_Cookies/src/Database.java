@@ -80,7 +80,7 @@ public class Database {
 			ResultSet rs = prepStmt.executeQuery();
 			if(rs.next()){
 				String userN= rs.getString("userName");
-				//CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
+				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
 				System.out.println(userN + "is logged in");
 				return true;
 			}else
