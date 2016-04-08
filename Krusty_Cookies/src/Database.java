@@ -108,7 +108,26 @@ public class Database {
 		return true;
 	}
 	
-	public int nbrOfPallets(String cookieName){
+	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
+		PreparedStatement prepStmt = null;
+		try{
+			String sql = "SELECT count(*) FROM Pallets WHERE prodDate > start and prodDate < end"
+					+ "  and cName = cookieName";
+			prepStmt = conn.prepareStatement(sql);
+			
+			ResultSet rs = prepStmt.executeQuery();
+			if(rs.next()){
+				String userN= rs.getString("userName");
+				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
+				System.out.println(userN + "is logged in");
+				return 0;
+			}else
+				return 0;
+		}catch(SQLException e){
+			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
+			e.printStackTrace();
+			return 0;
+		}
 		return 0;
 	}
 	public void updateStorage(String cookieTypeMade){
