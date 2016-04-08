@@ -128,7 +128,6 @@ public class Database {
 			e.printStackTrace();
 			return 0;
 		}
-		return 0;
 	}
 	public void updateStorage(String cookieTypeMade){
 		

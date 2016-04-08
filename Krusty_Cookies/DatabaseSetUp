@@ -21,7 +21,6 @@ create table IngredientsInCookies (
   cookieName varchar(30) not null,
   ingredientName varchar(30) not null,
   amount integer not null,
-  unit varchar(5) not null,
   primary key(cookieName,ingredientName),
   foreign key(cookieName) references Cookies(cookieName),
   foreign key(ingredientName) references Ingredients(ingredientName)
@@ -98,42 +97,42 @@ insert into Cookies values('Tango');
 insert into Cookies values('Almond delight');
 insert into Cookies values('Berliner');
 
-insert into Recipes values('Nut ring', 'Flour','450');
-insert into Recipes values('Nut ring', 'Butter','450');
-insert into Recipes values('Nut ring', 'Icing sugar','190');
-insert into Recipes values('Nut ring', 'Roasted, chopped nuts', '225');
+insert into IngredientsInCookies values('Nut ring', 'Flour','450');
+insert into IngredientsInCookies values('Nut ring', 'Butter','450');
+insert into IngredientsInCookies values('Nut ring', 'Icing sugar','190');
+insert into IngredientsInCookies values('Nut ring', 'Roasted, chopped nuts', '225');
 
-insert into Recipes values('Nut cookie','Fine-ground nuts','750');
-insert into Recipes values('Nut cookie','Ground, roasted nuts','625');
-insert into Recipes values('Nut cookie','Bread crumbs','125');
-insert into Recipes values('Nut cookie','Sugar','375');
-insert into Recipes values('Nut cookie','Egg whites','350');
-insert into Recipes values('Nut cookie','Chocolate','50');
+insert into IngredientsInCookies values('Nut cookie','Fine-ground nuts','750');
+insert into IngredientsInCookies values('Nut cookie','Ground, roasted nuts','625');
+insert into IngredientsInCookies values('Nut cookie','Bread crumbs','125');
+insert into IngredientsInCookies values('Nut cookie','Sugar','375');
+insert into IngredientsInCookies values('Nut cookie','Egg whites','350');
+insert into IngredientsInCookies values('Nut cookie','Chocolate','50');
 
-insert into Recipes values('Amneris','Marzipan','750');
-insert into Recipes values('Amneris','Butter','250');
-insert into Recipes values('Amneris','Eggs','250');
-insert into Recipes values('Amneris','Potato starch','25');
-insert into Recipes values('Amneris','Wheat flour','25');
+insert into IngredientsInCookies values('Amneris','Marzipan','750');
+insert into IngredientsInCookies values('Amneris','Butter','250');
+insert into IngredientsInCookies values('Amneris','Eggs','250');
+insert into IngredientsInCookies values('Amneris','Potato starch','25');
+insert into IngredientsInCookies values('Amneris','Wheat flour','25');
 
-insert into Recipes values('Tango','Butter','200');
-insert into Recipes values('Tango','Sugar','250');
-insert into Recipes values('Tango','Flour','300');
-insert into Recipes values('Tango','Sodium bicarbonate','4');
-insert into Recipes values('Tango','Vanilla','2');
+insert into IngredientsInCookies values('Tango','Butter','200');
+insert into IngredientsInCookies values('Tango','Sugar','250');
+insert into IngredientsInCookies values('Tango','Flour','300');
+insert into IngredientsInCookies values('Tango','Sodium bicarbonate','4');
+insert into IngredientsInCookies values('Tango','Vanilla','2');
 
-insert into Recipes values('Almond delight','Butter','400');
-insert into Recipes values('Almond delight','Sugar','270');
-insert into Recipes values('Almond delight','Chopped almonds','279');
-insert into Recipes values('Almond delight','Flour','400');
-insert into Recipes values('Almond delight','Cinnamon','10');
+insert into IngredientsInCookies values('Almond delight','Butter','400');
+insert into IngredientsInCookies values('Almond delight','Sugar','270');
+insert into IngredientsInCookies values('Almond delight','Chopped almonds','279');
+insert into IngredientsInCookies values('Almond delight','Flour','400');
+insert into IngredientsInCookies values('Almond delight','Cinnamon','10');
 
-insert into Recipes values('Berliner','Flour','350');
-insert into Recipes values('Berliner','Butter','250');
-insert into Recipes values('Berliner','Icing sugar','100');
-insert into Recipes values('Berliner','Eggs','50');
-insert into Recipes values('Berliner','Vanilla Sugar','5');
-insert into Recipes values('Berliner','Chocolate','50');
+insert into IngredientsInCookies values('Berliner','Flour','350');
+insert into IngredientsInCookies values('Berliner','Butter','250');
+insert into IngredientsInCookies values('Berliner','Icing sugar','100');
+insert into IngredientsInCookies values('Berliner','Eggs','50');
+insert into IngredientsInCookies values('Berliner','Vanilla Sugar','5');
+insert into IngredientsInCookies values('Berliner','Chocolate','50');
 
 insert into Customers values(customerId,'Helsingborg','Finkakor AB');
 insert into Customers values(customerId,'Malmö','Småbröd AB');
