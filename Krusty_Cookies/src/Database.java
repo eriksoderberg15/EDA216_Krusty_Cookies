@@ -1,5 +1,3 @@
-
-
 import java.sql.*;
 import java.util.*;
 
@@ -102,33 +100,66 @@ public class Database {
 	}
 	
 	
+	
 	// Methods for the Krusty database
 	
 	public boolean createOrder(){
 		return true;
 	}
 	
-	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
-		PreparedStatement prepStmt = null;
-		try{
-			String sql = "SELECT count(*) FROM Pallets WHERE prodDate > start and prodDate < end"
-					+ "  and cName = cookieName";
-			prepStmt = conn.prepareStatement(sql);
-			
-			ResultSet rs = prepStmt.executeQuery();
-			if(rs.next()){
-				String userN= rs.getString("userName");
-				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
-				System.out.println(userN + "is logged in");
-				return 0;
-			}else
-				return 0;
-		}catch(SQLException e){
-			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
+	public void createPallet(){
+		/* 1. läs in alla kaktyper som går att skapa
+		 * 2. tryck på ett kaknamn
+		 * 3. fyll i hur många som ska produceras
+		 * 4. Skapa en pallet i table Pallet
+		 * 5. Subtrahera ner ingredienserna i lagret
+		 * 6. Om det inte finns tillräckligt med ingredienser måste vi printa ut det i GUI:t
+		 */
+		ArrayList<String> cookieNames = new ArrayList<String>();
+		String sql = "SELECT * FROM Cookies";
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				//movies.add(rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return 0;
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
+		//return movies;	
+		
+		
 	}
+//	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
+//		PreparedStatement prepStmt = null;
+//		try{
+//			String sql = "SELECT count(*) FROM Pallets WHERE prodDate > start and prodDate < end"
+//					+ "  and cName = cookieName";
+//			prepStmt = conn.prepareStatement(sql);
+//			
+//			ResultSet rs = prepStmt.executeQuery();
+//			if(rs.next()){
+//				String userN= rs.getString("userName");
+//				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
+//				System.out.println(userN + "is logged in");
+//				return 0;
+//			}else
+//				return 0;
+//		}catch(SQLException e){
+//			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
+//			e.printStackTrace();
+//			return 0;
+//		}
+//	}
 	public void updateStorage(String cookieTypeMade){
 		
 	}

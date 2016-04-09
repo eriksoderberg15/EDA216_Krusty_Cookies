@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/Krusty_Cookies/Krusty_Cookies.iml" filepath="$PROJECT_DIR$/Krusty_Cookies/Krusty_Cookies.iml" />
+      <module fileurl="file://$PROJECT_DIR$/Krusty_Cookies.iml" filepath="$PROJECT_DIR$/Krusty_Cookies.iml" />
     </modules>
   </component>
 </project>
