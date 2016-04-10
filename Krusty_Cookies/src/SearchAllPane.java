@@ -15,8 +15,10 @@ import java.awt.event.*;
  * fields in the right panel. The bottom panel contains a button which the user
  * can click to book a ticket to the selected performance.
  */
-public class SearchPane extends BasicPane {
+public class SearchAllPane extends BasicPane {
     private static final long serialVersionUID = 1;
+
+    private static String
     /**
      * A label showing the name of the current user.
      */
@@ -78,7 +80,7 @@ public class SearchPane extends BasicPane {
      * @param db
      *            The database object.
      */
-    public SearchPane(Database db) {
+    public SearchAllPane(Database db) {
         super(db);
     }
 
