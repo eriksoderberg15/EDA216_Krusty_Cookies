@@ -49,16 +49,16 @@ public class SearchCookiePane extends BasicPane {
         JPanel comboBoxPane = new JPanel();
         comboBoxPane.setLayout(new GridLayout(3,1));
 
-        ArrayList<String> cookies = db.showCreatableCookies();
-        String cookieBox[]= (String[]) cookies.toArray();
-        cookieChoice = new JComboBox<String>(cookieBox);
-        cookieChoice.setEditable(false);
-        cookieChoice.addItemListener(new ItemHandler());
-        comboBoxPane.add(cookieChoice);
-
-        JButton block = new JButton("Block");
-        block.addActionListener(new BlockActionListener());
-        comboBoxPane.add(block);
+//        ArrayList<String> cookies = db.showCreatableCookies();
+//        String cookieBox[]= (String[]) cookies.toArray();
+//        cookieChoice = new JComboBox<String>(cookieBox);
+//        cookieChoice.setEditable(false);
+//        cookieChoice.addItemListener(new ItemHandler());
+//        comboBoxPane.add(cookieChoice);
+//
+//        JButton block = new JButton("Block");
+//        block.addActionListener(new BlockActionListener());
+//        comboBoxPane.add(block);
 
         JPanel initial = new JPanel();
         p.add(comboBoxPane, BorderLayout.CENTER);
