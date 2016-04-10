@@ -66,7 +66,34 @@ public class Database {
 	public boolean isConnected() {
 		return conn != null;
 	}
+	/**
+	 * Method giving available cookie
+	 * @return List of cookieNames
+	 */
+	public ArrayList<String> showCreatableCookies(){
+		ArrayList<String> cookieNames = new ArrayList<String>();
+		String sql = "SELECT cookieName FROM Cookies";
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				cookieNames.add(rs.getString("cookieName"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return cookieNames;
 
+	}
 	public boolean createPallet(String cookieName){
 		/* 1. läs in alla kaktyper som går att skapa
 		 * 2. tryck på ett kaknamn
@@ -75,27 +102,9 @@ public class Database {
 		 * 5. Subtrahera ner ingredienserna i lagret
 		 * 6. Om det inte finns tillräckligt med ingredienser måste vi printa ut det i GUI:t
 		 */
-		ArrayList<String> cookieNames = new ArrayList<String>();
-		String sql = "SELECT * FROM Cookies";
-		PreparedStatement ps = null;
-		try {
-			ps = conn.prepareStatement(sql);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				//movies.add(rs.getString("name"));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				ps.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+		if(updateStorage(cookieName)){
+			//Om det går: skapa då palletten
 		}
-		return false; //ÄNDRA (autofyll)
 
 
 	}
@@ -180,10 +189,10 @@ public class Database {
 	/*
 	 * Search-metoderna
 	 */
-	
-	public void findPalletsContainingCookie(String cookieToFind){
-		String findPallets = "SELECT palletNbr FROM Pallets where cookieName = cookieToFind";
+
+	public ArrayList<Integer>findPalletsContainingCookie(String cookieToFind){
 		ArrayList<Integer> thePallets = new ArrayList<Integer>();
+		String findPallets = "SELECT palletNbr FROM Pallets where cookieName = cookieToFind";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(findPallets);
@@ -195,24 +204,43 @@ public class Database {
 			e.printStackTrace();
 			System.out.println("troligtvis fanns det inga pallets inglagda i systemet därav nullpointer typ");
 		}
+		return thePallets;
 	}
-	
-	public void findBlockedCookies(){
+
+	public ArrayList<String> findBlockedCookies(){
 		ArrayList<String> blockedCookies = new ArrayList<String>(); 
 		String findBlocked = "SELECT distinct cookieName FROM Pallets where state = blocked";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(findBlocked);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while(rs.next()){
-				blockedCookies.add(rs.getString(rs.getRow())); //ingen aning om det är så här man ska göra
+				blockedCookies.add(rs.getString("cookieName")); //ingen aning om det är så här man ska göra
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		return blockedCookies;
 	}
-	
+
+	public ArrayList<Integer> findBlockedPallets(){
+		ArrayList<Integer> blockedPallets = new ArrayList<Integer>(); 
+		String findBlocked = "SELECT distinct palletNbr FROM Pallets where state = blocked";
+		PreparedStatement ps = null;
+		try{
+			ps = conn.prepareStatement(findBlocked);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()){
+				blockedPallets.add(rs.getInt("palletNbr")); //Fel?
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return blockedPallets;
+	}
+
 	public int storageAmountLeft(String ingredientName){
 		return 0;
 	}
