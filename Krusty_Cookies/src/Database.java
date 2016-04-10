@@ -94,7 +94,7 @@ public class Database {
 		return cookieNames;
 
 	}
-	public boolean createPallet(String cookieName){
+	public int createPallet(String cookieName){
 		/* 1. läs in alla kaktyper som går att skapa
 		 * 2. tryck på ett kaknamn
 		 * 3. fyll i hur många som ska produceras
@@ -107,6 +107,7 @@ public class Database {
 		}
 
 
+		return 0; //bör vara palletnumber
 	}
 	//	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
 	//		PreparedStatement prepStmt = null;
@@ -166,23 +167,25 @@ public class Database {
 				if(ingAmountInt<amountNeeded){
 					//I något av ingredienserna fanns det inte tillräckligt
 					conn.rollback();
-					return true;
+					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
+					return false;
 				}else{
 					prepStmt = conn.prepareStatement(sqlSubtract);
 					ResultSet noNeedOf = prepStmt.executeQuery();
-					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
-					return false;
+					return true;
 				}
 			}
 		}catch(SQLException e){
 			try {
 				conn.rollback();
+				return false;
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				return false;
 			}
-			e.printStackTrace();
+
 		}
+
 	}
 
 
