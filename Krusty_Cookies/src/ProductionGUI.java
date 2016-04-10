@@ -37,8 +37,15 @@ public class ProductionGUI {
         tabbedPane.addTab("Produce Pallets", null, producePane,
                 "for producing pallets of cookies");
 
-        SearchPane searchPane = new SearchPane(db);
+        SearchAllPane searchPane = new SearchAllPane(db);
         tabbedPane.addTab("Search Pallets", null, searchPane, "search for produced pallets");
+
+        SearchCookiePane searchCookiePane = new SearchCookiePane(db);
+        tabbedPane.addTab("Search Pallets", null, searchCookiePane, "search for produced pallets");
+
+        SearchByDatePane searchByDatePane = new SearchByDatePane(db);
+        tabbedPane.addTab("Search Pallets", null, searchByDatePane, "search for produced pallets");
+
 
         tabbedPane.setSelectedIndex(0);
 
@@ -55,7 +62,7 @@ public class ProductionGUI {
         if (db.openConnection("db70", "")) {
             producePane.displayMessage("Connected to database");
         } else {
-            producePane.displayMessage("Could not connect to database");
+            producePane.displayMessage("Could not connect to database, please try again");
         }
     }
 

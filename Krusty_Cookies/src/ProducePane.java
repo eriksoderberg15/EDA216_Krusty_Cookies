@@ -6,9 +6,7 @@ import javax.swing.event.*;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
-import java.util.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
+
 
 public class ProducePane extends BasicPane {
             private static final long serialVersionUID = 1;
