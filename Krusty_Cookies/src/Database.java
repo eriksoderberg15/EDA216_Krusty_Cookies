@@ -89,7 +89,7 @@ public class Database {
 		return cookieNames;
 
 	}
-	
+
 	//Allt visas som strängar i GUIt, därav returnerar vi här en lista med strängar
 
 	/**
@@ -109,7 +109,7 @@ public class Database {
 				conn.setAutoCommit(false);
 
 				ps = conn.prepareStatement(createPallet);	
-				
+
 				ps.setString(1, "pallettNummer");	//Cookie namn
 				ps.setString(2, cookieName);	//Cookie namn
 				ps.setString(3, date);	//pallet nummer
@@ -233,12 +233,12 @@ public class Database {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-				
+
 				tempPalletInfo.add(rs.getString("cookieName"));
 				tempPalletInfo.add(rs.getString("prodDate"));
 				tempPalletInfo.add(rs.getString("location"));
 				tempPalletInfo.add(rs.getString("isBlocked"));
-				
+
 				map.put(tempKey, tempPalletInfo);
 			}	
 		}catch(SQLException e){
@@ -247,7 +247,7 @@ public class Database {
 		}
 		return map;
 	}
-	
+
 	public HashMap<String, ArrayList<String>> blockAllPallets(String cookieType){
 		String blockPallets = "UPDATE Pallets SET isBlocked = true where isBlocked = false and cookieName = ?";
 		PreparedStatement ps = null;
@@ -260,7 +260,7 @@ public class Database {
 		}
 		return findBlockedPallets(cookieType);
 	}
-	
+
 	//1: content, 2: prodDate, 3: location, 4: isBlocked
 	public HashMap<String, ArrayList<String>> findBlockedPallets(String cookieName){
 		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
@@ -273,12 +273,12 @@ public class Database {
 
 			while(rs.next()){
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-				
+
 				tempPalletInfo.add(rs.getString("cookieName"));
 				tempPalletInfo.add(rs.getString("prodDate"));
 				tempPalletInfo.add(rs.getString("location"));
 				tempPalletInfo.add(rs.getString("isBlocked"));
-				
+
 				map.put(tempKey, tempPalletInfo);
 			}
 		}catch(SQLException e){
@@ -326,27 +326,27 @@ public class Database {
 	public ArrayList<String> getPalletInfo(int palletId){
 		ArrayList<String> palletInfo = new ArrayList<String>();
 		String getPalletInfo = "SELECT * FROM Pallets where palletNbr = ?";
-		
+
 		PreparedStatement ps = null;
-		
+
 		try{
 			ps = conn.prepareStatement(getPalletInfo);
 			ps.setInt(1, palletId);
-			
+
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-				
+
 				palletInfo.add(rs.getString("cookieName"));
 				palletInfo.add(rs.getString("prodDate"));
 				palletInfo.add(rs.getString("location"));
 				palletInfo.add(rs.getString("isBlocked"));
-				
+
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-			
+
 		return palletInfo;
 	}
 	//Hitta alla pallar som bär på kaktypen cookieName
@@ -375,6 +375,29 @@ public class Database {
 		}
 		return palletList;
 	}
+
+	public void palletInfoForIntervall(String cookieType, String dateStart, String dateEnd, boolean shouldBlock){
+		//antingen kommer man bara vilja displaya pallets för det givna intervallet, eller så kommer man ha velat blocka de först 
+		//och sedan displaya. 
+		String blockPallets = "UPDATE Pallets SET isBlocked = true where isBlocked = false and cookieName = ? and prodDate >= ? and prodDate <= ?";
+		if(shouldBlock){
+
+		}
+
+		//		public void searchByDate(String startDateFormatted, String endDateFormatted, String chosenCookie, String chosenIngr,
+		//				String onlyBlocked, DefaultListModel<Pallet> cookieListModel) {
+		//			ArrayList<String> input = new ArrayList<String>();
+		//			input.add(startDateFormatted + " 00:00:00");
+		//			input.add(endDateFormatted + " 23:59:59");
+		//			input.add(chosenCookie);
+		//			input.add(chosenIngr);
+		//			String q = "SELECT * FROM PALLET WHERE bakedate >= ? AND bakedate <=? AND cookieName LIKE ? AND cookieName IN (SELECT cookieName from recipe WHERE ingrname LIKE ?) "
+		//					+ onlyBlocked + " ORDER BY bakedate;";
+		//			execPrepPalSearchQuery(q, cookieListModel, input, input.size());
+		//		}
+
+	}
+
 	public ArrayList<String> findPalletsContainingCookieList(String cookieToFind){
 		StringBuilder sb = new StringBuilder();
 		ArrayList<String> palletList = new ArrayList<String>();
@@ -394,6 +417,7 @@ public class Database {
 					sb.append("Blocked");
 				}
 				palletList.add(sb.toString());
+				sb.setLength(0);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
