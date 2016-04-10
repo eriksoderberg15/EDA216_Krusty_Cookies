@@ -26,8 +26,8 @@
       <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-30">
-              <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+            <state relative-caret-position="-4710">
+              <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#245#246#0" expanded="true" />
@@ -35,36 +35,36 @@
                 <element signature="e#1424#1425#0" expanded="true" />
                 <element signature="e#1450#1451#0" expanded="true" />
                 <element signature="e#1626#1634#0" expanded="true" />
-                <element signature="e#2391#2399#0" expanded="true" />
-                <element signature="e#4310#4327#0" expanded="true" />
-                <element signature="e#6864#6872#0" expanded="true" />
-                <element signature="e#6982#7009#0" expanded="true" />
-                <element signature="e#8400#8427#0" expanded="true" />
-                <element signature="e#8481#8489#0" expanded="true" />
-                <element signature="e#9197#9206#0" expanded="true" />
-                <element signature="e#9635#9636#0" expanded="true" />
-                <element signature="e#9650#9651#0" expanded="true" />
-                <element signature="e#9766#9767#0" expanded="true" />
-                <element signature="e#9793#9794#0" expanded="true" />
-                <element signature="e#9831#9832#0" expanded="true" />
-                <element signature="e#9858#9859#0" expanded="true" />
-                <element signature="e#10080#10081#0" expanded="true" />
-                <element signature="e#10098#10099#0" expanded="true" />
-                <element signature="e#10142#10143#0" expanded="true" />
-                <element signature="e#10169#10170#0" expanded="true" />
-                <element signature="e#10329#10338#0" expanded="true" />
-                <element signature="e#10481#10490#0" expanded="true" />
-                <element signature="e#11211#11219#0" expanded="true" />
-                <marker date="1460313931000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
-                <marker date="1460313931000" expanded="true" signature="2593:2695" placeholder="INSERT INTO Pallets... " />
-                <marker date="1460313931000" expanded="true" signature="4424:4479" placeholder="SELECT * FRO... IngredientsInCookies" />
-                <marker date="1460313931000" expanded="true" signature="4514:4574" placeholder="SELECT stock... Ingredients" />
-                <marker date="1460313931000" expanded="true" signature="4601:4678" placeholder="UPDATE Ingre... " />
-                <marker date="1460313931000" expanded="true" signature="7082:7135" placeholder="SELECT * FRO... Pallets" />
-                <marker date="1460313931000" expanded="true" signature="7877:7955" placeholder="UPDATE Palle... " />
-                <marker date="1460313931000" expanded="true" signature="8518:8562" placeholder="SELECT * FRO... Pallets" />
-                <marker date="1460313931000" expanded="true" signature="9235:9296" placeholder="SELECT disti... Pallets" />
-                <marker date="1460313931000" expanded="true" signature="11247:11300" placeholder="SELECT * FRO... Pallets" />
+                <element signature="e#2316#2324#0" expanded="true" />
+                <element signature="e#4235#4252#0" expanded="true" />
+                <element signature="e#6789#6797#0" expanded="true" />
+                <element signature="e#6907#6934#0" expanded="true" />
+                <element signature="e#8325#8352#0" expanded="true" />
+                <element signature="e#8406#8414#0" expanded="true" />
+                <element signature="e#9122#9131#0" expanded="true" />
+                <element signature="e#9560#9561#0" expanded="true" />
+                <element signature="e#9575#9576#0" expanded="true" />
+                <element signature="e#9691#9692#0" expanded="true" />
+                <element signature="e#9718#9719#0" expanded="true" />
+                <element signature="e#9756#9757#0" expanded="true" />
+                <element signature="e#9783#9784#0" expanded="true" />
+                <element signature="e#10005#10006#0" expanded="true" />
+                <element signature="e#10023#10024#0" expanded="true" />
+                <element signature="e#10126#10134#0" expanded="true" />
+                <element signature="e#10892#10901#0" expanded="true" />
+                <element signature="e#11044#11053#0" expanded="true" />
+                <element signature="e#11774#11782#0" expanded="true" />
+                <marker date="1460318167000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
+                <marker date="1460318167000" expanded="true" signature="2518:2620" placeholder="INSERT INTO Pallets... " />
+                <marker date="1460318167000" expanded="true" signature="4349:4404" placeholder="SELECT * FRO... IngredientsInCookies" />
+                <marker date="1460318167000" expanded="true" signature="4439:4499" placeholder="SELECT stock... Ingredients" />
+                <marker date="1460318167000" expanded="true" signature="4526:4603" placeholder="UPDATE Ingre... " />
+                <marker date="1460318167000" expanded="true" signature="7007:7060" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460318167000" expanded="true" signature="7802:7880" placeholder="UPDATE Palle... " />
+                <marker date="1460318167000" expanded="true" signature="8443:8487" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460318167000" expanded="true" signature="9160:9221" placeholder="SELECT disti... Pallets" />
+                <marker date="1460318167000" expanded="true" signature="10164:10205" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460318167000" expanded="true" signature="11810:11863" placeholder="SELECT * FRO... Pallets" />
               </folding>
             </state>
           </provider>
@@ -182,13 +182,13 @@
       <list>
         <option value="$PROJECT_DIR$/src/SearchPane.java" />
         <option value="$PROJECT_DIR$/src/ProducePane.java" />
-        <option value="$PROJECT_DIR$/src/Database.java" />
         <option value="$PROJECT_DIR$/src/SearchAllPane.java" />
         <option value="$PROJECT_DIR$/src/SearchPalletNbrPane.java" />
         <option value="$PROJECT_DIR$/src/SearchByDatePane.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/SearchCookiePane.java" />
         <option value="$PROJECT_DIR$/src/ProductionGUI.java" />
+        <option value="$PROJECT_DIR$/src/Database.java" />
       </list>
     </option>
   </component>
@@ -713,16 +713,16 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1460283930983</updated>
-      <workItem from="1460283932266" duration="23541000" />
+      <workItem from="1460283932266" duration="23699000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="23541000" />
+    <option name="totallyTimeSpent" value="23699000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="0" width="1280" height="800" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -736,7 +736,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.253125" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.253125" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="-1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -888,8 +888,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Database.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-30">
-          <caret line="10" column="13" selection-start-line="10" selection-start-column="13" selection-end-line="10" selection-end-column="13" />
+        <state relative-caret-position="-4710">
+          <caret line="8" column="3" selection-start-line="8" selection-start-column="3" selection-end-line="8" selection-end-column="3" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="e#245#246#0" expanded="true" />
@@ -897,36 +897,36 @@
             <element signature="e#1424#1425#0" expanded="true" />
             <element signature="e#1450#1451#0" expanded="true" />
             <element signature="e#1626#1634#0" expanded="true" />
-            <element signature="e#2391#2399#0" expanded="true" />
-            <element signature="e#4310#4327#0" expanded="true" />
-            <element signature="e#6864#6872#0" expanded="true" />
-            <element signature="e#6982#7009#0" expanded="true" />
-            <element signature="e#8400#8427#0" expanded="true" />
-            <element signature="e#8481#8489#0" expanded="true" />
-            <element signature="e#9197#9206#0" expanded="true" />
-            <element signature="e#9635#9636#0" expanded="true" />
-            <element signature="e#9650#9651#0" expanded="true" />
-            <element signature="e#9766#9767#0" expanded="true" />
-            <element signature="e#9793#9794#0" expanded="true" />
-            <element signature="e#9831#9832#0" expanded="true" />
-            <element signature="e#9858#9859#0" expanded="true" />
-            <element signature="e#10080#10081#0" expanded="true" />
-            <element signature="e#10098#10099#0" expanded="true" />
-            <element signature="e#10142#10143#0" expanded="true" />
-            <element signature="e#10169#10170#0" expanded="true" />
-            <element signature="e#10329#10338#0" expanded="true" />
-            <element signature="e#10481#10490#0" expanded="true" />
-            <element signature="e#11211#11219#0" expanded="true" />
-            <marker date="1460313931000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
-            <marker date="1460313931000" expanded="true" signature="2593:2695" placeholder="INSERT INTO Pallets... " />
-            <marker date="1460313931000" expanded="true" signature="4424:4479" placeholder="SELECT * FRO... IngredientsInCookies" />
-            <marker date="1460313931000" expanded="true" signature="4514:4574" placeholder="SELECT stock... Ingredients" />
-            <marker date="1460313931000" expanded="true" signature="4601:4678" placeholder="UPDATE Ingre... " />
-            <marker date="1460313931000" expanded="true" signature="7082:7135" placeholder="SELECT * FRO... Pallets" />
-            <marker date="1460313931000" expanded="true" signature="7877:7955" placeholder="UPDATE Palle... " />
-            <marker date="1460313931000" expanded="true" signature="8518:8562" placeholder="SELECT * FRO... Pallets" />
-            <marker date="1460313931000" expanded="true" signature="9235:9296" placeholder="SELECT disti... Pallets" />
-            <marker date="1460313931000" expanded="true" signature="11247:11300" placeholder="SELECT * FRO... Pallets" />
+            <element signature="e#2316#2324#0" expanded="true" />
+            <element signature="e#4235#4252#0" expanded="true" />
+            <element signature="e#6789#6797#0" expanded="true" />
+            <element signature="e#6907#6934#0" expanded="true" />
+            <element signature="e#8325#8352#0" expanded="true" />
+            <element signature="e#8406#8414#0" expanded="true" />
+            <element signature="e#9122#9131#0" expanded="true" />
+            <element signature="e#9560#9561#0" expanded="true" />
+            <element signature="e#9575#9576#0" expanded="true" />
+            <element signature="e#9691#9692#0" expanded="true" />
+            <element signature="e#9718#9719#0" expanded="true" />
+            <element signature="e#9756#9757#0" expanded="true" />
+            <element signature="e#9783#9784#0" expanded="true" />
+            <element signature="e#10005#10006#0" expanded="true" />
+            <element signature="e#10023#10024#0" expanded="true" />
+            <element signature="e#10126#10134#0" expanded="true" />
+            <element signature="e#10892#10901#0" expanded="true" />
+            <element signature="e#11044#11053#0" expanded="true" />
+            <element signature="e#11774#11782#0" expanded="true" />
+            <marker date="1460318167000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
+            <marker date="1460318167000" expanded="true" signature="2518:2620" placeholder="INSERT INTO Pallets... " />
+            <marker date="1460318167000" expanded="true" signature="4349:4404" placeholder="SELECT * FRO... IngredientsInCookies" />
+            <marker date="1460318167000" expanded="true" signature="4439:4499" placeholder="SELECT stock... Ingredients" />
+            <marker date="1460318167000" expanded="true" signature="4526:4603" placeholder="UPDATE Ingre... " />
+            <marker date="1460318167000" expanded="true" signature="7007:7060" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460318167000" expanded="true" signature="7802:7880" placeholder="UPDATE Palle... " />
+            <marker date="1460318167000" expanded="true" signature="8443:8487" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460318167000" expanded="true" signature="9160:9221" placeholder="SELECT disti... Pallets" />
+            <marker date="1460318167000" expanded="true" signature="10164:10205" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460318167000" expanded="true" signature="11810:11863" placeholder="SELECT * FRO... Pallets" />
           </folding>
         </state>
       </provider>
