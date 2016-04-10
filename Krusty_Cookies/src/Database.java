@@ -66,28 +66,24 @@ public class Database {
 	public boolean isConnected() {
 		return conn != null;
 	}
-
-	public boolean createPallet(String cookieName){
-		/* 1. läs in alla kaktyper som går att skapa
-		 * 2. tryck på ett kaknamn
-		 * 3. fyll i hur många som ska produceras
-		 * 4. Skapa en pallet i table Pallet
-		 * 5. Subtrahera ner ingredienserna i lagret
-		 * 6. Om det inte finns tillräckligt med ingredienser måste vi printa ut det i GUI:t
-		 */
+	/**
+	 * Method giving available cookie
+	 * @return List of cookieNames
+	 */
+	public ArrayList<String> showCreatableCookies(){
 		ArrayList<String> cookieNames = new ArrayList<String>();
-		String sql = "SELECT * FROM Cookies";
+		String sql = "SELECT cookieName FROM Cookies";
 		PreparedStatement ps = null;
 		try {
 			ps = conn.prepareStatement(sql);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
-				//movies.add(rs.getString("name"));
+				cookieNames.add(rs.getString("cookieName"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		} finally {
+		}finally {
 			try {
 				ps.close();
 			} catch (SQLException e) {
@@ -95,10 +91,23 @@ public class Database {
 				e.printStackTrace();
 			}
 		}
-		return false; //ÄNDRA (autofyll)
+		return cookieNames;
+
+	}
+	public int createPallet(String cookieName){
+		/* 1. läs in alla kaktyper som går att skapa
+		 * 2. tryck på ett kaknamn
+		 * 3. fyll i hur många som ska produceras
+		 * 4. Skapa en pallet i table Pallet
+		 * 5. Subtrahera ner ingredienserna i lagret
+		 * 6. Om det inte finns tillräckligt med ingredienser måste vi printa ut det i GUI:t
+		 */
+		if(updateStorage(cookieName)){
+			//Om det går: skapa då palletten
+		}
 
 
-		//DETTA ÄR EN TESTKOMENTAR FÖR ATT KOLLA OM ALLT FUNGERAR
+		return 0; //bör vara palletnumber
 	}
 	//	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
 	//		PreparedStatement prepStmt = null;
@@ -158,33 +167,35 @@ public class Database {
 				if(ingAmountInt<amountNeeded){
 					//I något av ingredienserna fanns det inte tillräckligt
 					conn.rollback();
-					return true;
+					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
+					return false;
 				}else{
 					prepStmt = conn.prepareStatement(sqlSubtract);
 					ResultSet noNeedOf = prepStmt.executeQuery();
-					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
-					return false;
+					return true;
 				}
 			}
 		}catch(SQLException e){
 			try {
 				conn.rollback();
+				return false;
 			} catch (SQLException e1) {
-				// TODO Auto-generated catch block
 				e1.printStackTrace();
+				return false;
 			}
-			e.printStackTrace();
+
 		}
+
 	}
 
 
 	/*
 	 * Search-metoderna
 	 */
-	
-	public void findPalletsContainingCookie(String cookieToFind){
-		String findPallets = "SELECT palletNbr FROM Pallets where cookieName = cookieToFind";
+
+	public ArrayList<Integer>findPalletsContainingCookie(String cookieToFind){
 		ArrayList<Integer> thePallets = new ArrayList<Integer>();
+		String findPallets = "SELECT palletNbr FROM Pallets where cookieName = cookieToFind";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(findPallets);
@@ -196,24 +207,43 @@ public class Database {
 			e.printStackTrace();
 			System.out.println("troligtvis fanns det inga pallets inglagda i systemet därav nullpointer typ");
 		}
+		return thePallets;
 	}
-	
-	public void findBlockedCookies(){
+
+	public ArrayList<String> findBlockedCookies(){
 		ArrayList<String> blockedCookies = new ArrayList<String>(); 
 		String findBlocked = "SELECT distinct cookieName FROM Pallets where state = blocked";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(findBlocked);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while(rs.next()){
-				blockedCookies.add(rs.getString(rs.getRow())); //ingen aning om det är så här man ska göra
+				blockedCookies.add(rs.getString("cookieName")); //ingen aning om det är så här man ska göra
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
+		return blockedCookies;
 	}
-	
+
+	public ArrayList<Integer> findBlockedPallets(){
+		ArrayList<Integer> blockedPallets = new ArrayList<Integer>(); 
+		String findBlocked = "SELECT distinct palletNbr FROM Pallets where state = blocked";
+		PreparedStatement ps = null;
+		try{
+			ps = conn.prepareStatement(findBlocked);
+			ResultSet rs = ps.executeQuery();
+
+			while(rs.next()){
+				blockedPallets.add(rs.getInt("palletNbr")); //Fel?
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return blockedPallets;
+	}
+
 	public int storageAmountLeft(String ingredientName){
 		return 0;
 	}
