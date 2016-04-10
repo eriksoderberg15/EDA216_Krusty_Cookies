@@ -184,5 +184,11 @@ public class Database {
 	public boolean showOrdersForInterval(String start, String end){
 		return true;
 	}
-	
+
+	/**
+	 * Return method for all available cookies to be produced
+	 * @return list of cookies
+     */
+	public ArrayList<String> getCookies() {
+	}
 }

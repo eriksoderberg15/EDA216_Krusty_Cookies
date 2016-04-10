@@ -51,7 +51,7 @@ create table Orders  (
 create table Pallets (
   palletNbr integer auto_increment,
   cookieName varchar(30) not null,
-  prodDate datetime not null,
+  prodDate date not null,
   state varchar(10) not null,
   orderId integer not null,
   primary key(palletNbr),
