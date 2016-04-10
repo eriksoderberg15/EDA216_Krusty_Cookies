@@ -59,9 +59,11 @@ public class ProductionGUI {
 
         producePane.displayMessage("Connecting to database ...");
 
-        if (db.openConnection("db70", "eriktintin")) {
+        if (db.openConnection("db70", "tintinerik")) {
             producePane.displayMessage("Connected to database");
+            System.out.println("connected");
         } else {
+            System.out.println("not connected");
             producePane.displayMessage("Could not connect to database, please try again");
         }
     }
