@@ -18,7 +18,6 @@ import java.awt.event.*;
 public class SearchAllPane extends BasicPane {
     private static final long serialVersionUID = 1;
 
-    private static String
     /**
      * A label showing the name of the current user.
      */
@@ -104,7 +103,7 @@ public class SearchAllPane extends BasicPane {
         dateList = new JList<String>(dateListModel);
         dateList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         dateList.setPrototypeCellValue("123456789012");
-        dateList.addListSelectionListener(new DateSelectionListener());
+//        dateList.addListSelectionListener(new DateSelectionListener());
         JScrollPane p2 = new JScrollPane(dateList);
 
         JPanel p = new JPanel();
@@ -153,12 +152,12 @@ public class SearchAllPane extends BasicPane {
      *
      * @return The bottom panel.
      */
-    public JComponent createBottomPanel() {
-        JButton[] buttons = new JButton[1];
-        buttons[0] = new JButton("Book ticket");
-        return new ButtonAndMessagePanel(buttons, messageLabel,
-                new ActionHandler());
-    }
+//    public JComponent createBottomPanel() {
+//        JButton[] buttons = new JButton[1];
+//        buttons[0] = new JButton("Book ticket");
+//        return new ButtonAndMessagePanel(buttons, messageLabel,
+//                new ActionHandler());
+//    }
 
     /**
      * Perform the entry actions of this pane: clear all fields, fetch the movie
@@ -175,28 +174,28 @@ public class SearchAllPane extends BasicPane {
      * Fetch movie names from the database and display them in the name list.
      */
     private void fillNameList() {
-        nameListModel.removeAllElements();
-        ArrayList<String> movies = db.getMovies();
-
-        for(String m : movies){
-            nameListModel.addElement(m);
-        }
+//        nameListModel.removeAllElements();
+//        ArrayList<String> movies = db.getMovies();
+//
+//        for(String m : movies){
+//            nameListModel.addElement(m);
+//        }
     }
 
     /**
      * Fetch performance dates from the database and display them in the date
      * list.
      */
-    private void fillDateList(String movieName) {
-        dateListModel.removeAllElements();
-        Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
-        System.out.println("hämtat performances från databasen");
-        Set<String> keys =  performances.keySet();  //get all keys
-        for(String date: keys){
-            System.out.println(date);
-            dateListModel.addElement(date);
-        }
-    }
+//    private void fillDateList(String movieName) {
+//        dateListModel.removeAllElements();
+////        Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
+//        System.out.println("hämtat performances från databasen");
+//        Set<String> keys =  performances.keySet();  //get all keys
+//        for(String date: keys){
+//            System.out.println(date);
+//            dateListModel.addElement(date);
+//        }
+//    }
 
     /**
      * Clear all text fields.
@@ -220,13 +219,13 @@ public class SearchAllPane extends BasicPane {
          *            The selected list item.
          */
         public void valueChanged(ListSelectionEvent e) {
-            if (nameList.isSelectionEmpty()) {
-                return;
-            }
-            String movieName = nameList.getSelectedValue();
-            System.out.println("Vi har tryckt på movie" + movieName);
-            clearFields();
-            fillDateList(movieName);
+//            if (nameList.isSelectionEmpty()) {
+//                return;
+//            }
+//            String movieName = nameList.getSelectedValue();
+//            System.out.println("Vi har tryckt på movie" + movieName);
+//            clearFields();
+//            fillDateList(movieName);
         }
     }
 
@@ -243,19 +242,19 @@ public class SearchAllPane extends BasicPane {
          *            The selected list item.
          */
         public void valueChanged(ListSelectionEvent e) {
-            if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
-                return;
-            }
-            String movieName = nameList.getSelectedValue();
-            String date = dateList.getSelectedValue();
-
-            Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
-            ArrayList <String> pInfo = performances.get(date);
-
-            fields[0].setText(movieName); //Movie name
-            fields[1].setText(date); // Date
-            fields[2].setText(pInfo.get(0)); // Theater name
-            fields[3].setText(pInfo.get(1)); // nr seats
+//            if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
+//                return;
+//            }
+//            String movieName = nameList.getSelectedValue();
+//            String date = dateList.getSelectedValue();
+//
+//            Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
+//            ArrayList <String> pInfo = performances.get(date);
+//
+//            fields[0].setText(movieName); //Movie name
+//            fields[1].setText(date); // Date
+//            fields[2].setText(pInfo.get(0)); // Theater name
+//            fields[3].setText(pInfo.get(1)); // nr seats
         }
     }
 
@@ -272,32 +271,32 @@ public class SearchAllPane extends BasicPane {
          *            The event object (not used).
          */
         public void actionPerformed(ActionEvent e) {
-            if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
-                return;
-            }
-            if (!CurrentUser.instance().isLoggedIn()) {
-                displayMessage("Must login first");
-                return;
-            }
-            String movieName = nameList.getSelectedValue();
-            String date = dateList.getSelectedValue();
-            String userName = CurrentUser.instance().getCurrentUserId();
-
-            if(db.bookTicket(movieName, date, userName)) {
-                System.out.println("Biljett-fan lyckades bokas");
-                int resNbr = db.getReservationNbr(movieName, date, userName);
-                if(resNbr != -1){
-                    String resNbrString = Integer.toString(resNbr);
-                    displayMessage("Booking number: " + resNbrString);
-                }else{
-                    displayMessage("Couldnt make reservation");
-
-                }
-
-            } else {
-                System.out.println("Biljett-fan lyckades INTE bokas");
-                displayMessage("The reservation already exists");
-            }
+//            if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
+//                return;
+//            }
+//            if (!CurrentUser.instance().isLoggedIn()) {
+//                displayMessage("Must login first");
+//                return;
+//            }
+//            String movieName = nameList.getSelectedValue();
+//            String date = dateList.getSelectedValue();
+//            String userName = CurrentUser.instance().getCurrentUserId();
+//
+//            if(db.bookTicket(movieName, date, userName)) {
+//                System.out.println("Biljett-fan lyckades bokas");
+//                int resNbr = db.getReservationNbr(movieName, date, userName);
+//                if(resNbr != -1){
+//                    String resNbrString = Integer.toString(resNbr);
+//                    displayMessage("Booking number: " + resNbrString);
+//                }else{
+//                    displayMessage("Couldnt make reservation");
+//
+//                }
+//
+//            } else {
+//                System.out.println("Biljett-fan lyckades INTE bokas");
+//                displayMessage("The reservation already exists");
+//            }
         }
     }
 }
