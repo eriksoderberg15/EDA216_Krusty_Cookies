@@ -9,7 +9,7 @@ import java.awt.event.*;
 
 
 /**
- * The GUI pane where a user books tickets for movie performances. It contains
+ * The GUI pane where a user search for pallets. It contains
  * one list of movies and one of performance dates. The user selects a
  * performance by clicking in these lists. The performance data is shown in the
  * fields in the right panel. The bottom panel contains a button which the user

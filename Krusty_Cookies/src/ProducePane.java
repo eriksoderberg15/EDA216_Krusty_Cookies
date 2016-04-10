@@ -101,7 +101,7 @@ public class ProducePane extends BasicPane {
 //            JScrollPane p2 = new JScrollPane(dateList);
 
             JPanel p = new JPanel();
-            p.setLayout(new GridLayout(1, 2));
+            p.setLayout(new GridLayout(1, 2)); //ViewportLayout()??
             p.add(p1);
 //            p.add(p2);
             return p;
@@ -129,9 +129,9 @@ public class ProducePane extends BasicPane {
 
             JPanel p1 = new JPanel();
             p1.setLayout(new FlowLayout(FlowLayout.LEFT));
-            p1.add(new JLabel("Choosen cookie: "));
-            currentCookieLabel = new JLabel("");
-            p1.add(currentCookieLabel);
+            p1.add(new JLabel("Chosen cookie: "));
+            cookieNameLabel = new JLabel("");
+            p1.add(cookieNameLabel);
 
             JPanel p = new JPanel();
             p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
@@ -154,18 +154,17 @@ public class ProducePane extends BasicPane {
         }
 
         /**
-         * Perform the entry actions of this pane: clear all fields, fetch the movie
+         * Perform the entry actions of this pane: clear all fields, fetch the cookie
          * names from the database and display them in the name list.
          */
         public void entryActions() {
             clearMessage();
-            currentCookieLabel.setText(CurrentUser.instance().getCurrentUserId());
             fillNameList();
             clearFields();
         }
 
         /**
-         * Fetch movie names from the database and display them in the name list.
+         * Fetch cookie names from the database and display them in the name list.
          */
         private void fillNameList() {
             cookieListModel.removeAllElements();
@@ -174,37 +173,21 @@ public class ProducePane extends BasicPane {
             for(String c : cookies){
                 cookieListModel.addElement(c);
             }
+            //db.getCookieNames(cookieListModel();
+            //cookieNameList.setModel(cookieListModel);
         }
 
-        private void fillFields(String cookie, int palletNbr) {
-            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-            Date dateTime = new Date();
-            String dateandtime = dateFormat.format(dateTime);
-
-            String date = dateandtime.substring(0, dateandtime.indexOf("")-1);
-            String time = dateandtime.substring(dateandtime.indexOf(""));
-            System.out.println(date + " : " + time); //2014-08-06 15:59:48
-
-            fields[COOKIE_NAME].setText(cookie);
-            fields[PALLET_NBR].setText("" + palletNbr);
-            fields[PALLET_DATE].setText(date);
-            fields[PALLET_TIME].setText(time);
+    /**
+     * Fills the fields with information regarding a produced pallet.
+     * @param pallet, list with info for a pallet.
+     */
+    private void fillFields(ArrayList<String> pallet) {
+            fields[COOKIE_NAME].setText(pallet.get(0));
+            fields[PALLET_NBR].setText(pallet.get(1));
+            fields[PALLET_DATE].setText(pallet.get(2));
+            fields[PALLET_TIME].setText(pallet.get(3));
 
         }
-//        /**
-//         * Fetch performance dates from the database and display them in the date
-//         * list.
-//         */
-//        private void fillDateList(String movieName) {
-//            dateListModel.removeAllElements();
-//            Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
-//            System.out.println("hämtat performances från databasen");
-//            Set<String> keys =  performances.keySet();  //get all keys
-//            for(String date: keys){
-//                System.out.println(date);
-//                dateListModel.addElement(date);
-//            }
-//        }
 
         /**
          * Clear all text fields.
@@ -231,49 +214,21 @@ public class ProducePane extends BasicPane {
                 if (cookieNameList.isSelectionEmpty()) {
                     return;
                 }
-                String cookieName = cookieNameList.getSelectedValue();
-                System.out.println("Vi har tryckt på movie" + cookieName);
                 clearFields();
-//                fillDateList(movieName);
+                clearMessage();
+                String cookieName = cookieNameList.getSelectedValue();
+                System.out.println("Vi har tryckt på cookie: " + cookieName);
+                cookieNameLabel.setText(cookieName);
             }
         }
 
-//        /**
-//         * A class that listens for clicks in the date list.
-//         */
-//        class DateSelectionListener implements ListSelectionListener {
-//            /**
-//             * Called when the user selects a name in the date list. Fetches
-//             * performance data from the database and displays it in the text
-//             * fields.
-//             *
-//             * @param e
-//             *            The selected list item.
-//             */
-//            public void valueChanged(ListSelectionEvent e) {
-//                if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
-//                    return;
-//                }
-//                String movieName = nameList.getSelectedValue();
-//                String date = dateList.getSelectedValue();
-//
-//                Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
-//                ArrayList <String> pInfo = performances.get(date);
-//
-//                fields[0].setText(movieName); //Movie name
-//                fields[1].setText(date); // Date
-//                fields[2].setText(pInfo.get(0)); // Theater name
-//                fields[3].setText(pInfo.get(1)); // nr seats
-//            }
-//        }
-//
         /**
          * A class that listens for button clicks.
          */
         class ActionHandler implements ActionListener {
             /**
              * Called when the user clicks the produce pallet button. One pallet is
-             * produced for the choosen cookie.
+             * produced for the chosen cookie.
              * @param e
              *            The event object (not used).
              */
@@ -288,10 +243,10 @@ public class ProducePane extends BasicPane {
 //                }
                 String cookieName = cookieNameList.getSelectedValue();
 //                String orderId = orderField.getSelectedValue();
-                int palletNbr = db.createPallet(cookieName);
-                if(palletNbr != 0) {
-                    fillFields(cookieName, palletNbr);
-                    System.out.println("One pallet of " + cookieName + " is successfully produced!");
+                ArrayList<String> pallet = db.createPallet(cookieName);
+                if(!pallet.isEmpty()) {
+                    fillFields(pallet);
+                    displayMessage("One pallet of " + cookieName + " was successfully produced!");
                 }else{
                     displayMessage("The pallet could not be produced, not enough ingredients.");
                 }
