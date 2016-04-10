@@ -2,6 +2,9 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.util.ArrayList;
 
 /**
  * Created by christineboghammar on 10/04/16.
@@ -46,7 +49,8 @@ public class SearchCookiePane extends BasicPane {
         JPanel comboBoxPane = new JPanel();
         comboBoxPane.setLayout(new GridLayout(3,1));
 
-        String cookieBox[] = db.showCreatableCookies();
+        ArrayList<String> cookies = db.showCreatableCookies();
+        String cookieBox[]= (String[]) cookies.toArray();
         cookieChoice = new JComboBox<String>(cookieBox);
         cookieChoice.setEditable(false);
         cookieChoice.addItemListener(new ItemHandler());
@@ -75,21 +79,43 @@ public class SearchCookiePane extends BasicPane {
             clearLists();
             if(!(cookieChoice.getSelectedIndex() == 0)){
                 String cookie = cookieChoice.getSelectedItem().toString();
-                db.findPalletsContainingCookie(cookie);
-
+               ArrayList<String> palletList = db.findPalletsContainingCookieList(cookie);
+                for(String pallet : palletList){
+                    palletResultListModel.addElement(pallet);
+                }
+                displayMessage("The list is displaying all pallets for cookie: "+ cookie);
+                palletResultList.setModel(palletResultListModel);
             }else{
                 displayMessage("Choose a cookie and search again");
-
+                return;
             }
-
-
         }
     }
 
-    private class ItemHandler implements java.awt.event.ItemListener {
+    private class ItemHandler implements ItemListener {
+        @Override
+        public void itemStateChanged(ItemEvent e) {
+            clearLists();
+        }
     }
 
     private class BlockActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            clearLists();
+            if(!(cookieChoice.getSelectedIndex() == 0)){
+                String cookie = cookieChoice.getSelectedItem().toString();
+                db.blockAllPallets(cookie);
+                ArrayList<String> palletList = db.findPalletsContainingCookieList(cookie);
+                for(String pallet : palletList){
+                    palletResultListModel.addElement(pallet);
+                }
+                displayMessage("The list is displaying all (blocked) pallets for cookie: "+ cookie);
+                palletResultList.setModel(palletResultListModel);
+            }else{
+                displayMessage("Choose a cookie and click Block again");
+                return;
+        }
     }
 
 }

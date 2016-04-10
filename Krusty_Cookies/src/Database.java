@@ -336,4 +336,45 @@ public class Database {
 		return true;
 	}
 
+	public String[] toPalletArray(HashMap<String, ArrayList<String>> palletsContainingCookie) {
+		String[] palletList = new String[palletsContainingCookie.size()];
+		int index = 0;
+		String pallet;
+		for(String key : palletsContainingCookie.keySet()){
+			StringBuilder sb = new StringBuilder();
+			sb.append(key);
+			ArrayList<String> palletInfo = palletsContainingCookie.get(key);
+			for (int i =0; i<palletInfo.size(); i++){
+				sb.append(palletInfo.get(i));
+			}
+			palletList[index] = sb.toString();
+		}
+		return palletList;
+	}
+	public ArrayList<String> findPalletsContainingCookieList(String cookieToFind){
+		StringBuilder sb = new StringBuilder();
+		ArrayList<String> palletList = new ArrayList<String>();
+		String findPallets = "SELECT * FROM Pallets where cookieName = cookieToFind";
+		PreparedStatement ps = null;
+		try{
+			ps = conn.prepareStatement(findPallets);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				String tempKey = Integer.toString(rs.getInt("palletNbr"));
+				sb.append(tempKey + " | ");
+				sb.append(rs.getString("cookieName") + " | ");
+				sb.append(rs.getString("prodDate") + " | ");
+				sb.append(rs.getString("location") + " | ");
+				String blocked = rs.getString("isBlocked");
+				if(blocked.equals(true)) {
+					sb.append("Blocked");
+				}
+				palletList.add(sb.toString());
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+			System.out.println("något hände med databasen");
+		}
+		return palletList;
+	}
 }

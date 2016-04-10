@@ -159,7 +159,6 @@ public class SearchPalletNbrPane extends BasicPane {
     public void entryActions() {
         clearMessage();
         fillNameList();
-        clearFields();
     }
 
     /**
@@ -176,26 +175,6 @@ public class SearchPalletNbrPane extends BasicPane {
         //cookieNameList.setModel(cookieListModel);
     }
 
-    /**
-     * Fills the fields with information regarding a produced pallet.
-     * @param pallet, list with info for a pallet.
-     */
-    private void fillFields(ArrayList<String> pallet) {
-        fields[COOKIE_NAME].setText(pallet.get(0));
-        fields[PALLET_NBR].setText(pallet.get(1));
-        fields[PALLET_DATE].setText(pallet.get(2));
-        fields[PALLET_TIME].setText(pallet.get(3));
-
-    }
-
-    /**
-     * Clear all text fields.
-     */
-    private void clearFields() {
-        for (int i = 0; i < fields.length; i++) {
-            fields[i].setText("");
-        }
-    }
 
     /**
      * A class that listens for clicks in the cookie list.
@@ -222,7 +201,7 @@ public class SearchPalletNbrPane extends BasicPane {
     }
 
     /**
-     * A class that listens for button clicks.
+     * A class that listens for Produce Pallet button clicks.
      */
     class ActionHandler implements ActionListener {
         /**
@@ -235,13 +214,8 @@ public class SearchPalletNbrPane extends BasicPane {
             if (cookieNameList.isSelectionEmpty() ){
                 return;
             }
-                /* If a order number is not filled.. Promp to be filled..*/
-//                if (OrderField.instance().isEmpty()) {
-//                    displayMessage("Must type in a order number.");
-//                    return;
-//                }
+
             String cookieName = cookieNameList.getSelectedValue();
-//                String orderId = orderField.getSelectedValue();
             ArrayList<String> pallet = db.createPallet(cookieName);
             if(!pallet.isEmpty()) {
                 fillFields(pallet);
