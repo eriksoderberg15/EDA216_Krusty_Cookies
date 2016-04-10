@@ -38,13 +38,13 @@ public class ProductionGUI {
                 "for producing pallets of cookies");
 
         SearchAllPane searchPane = new SearchAllPane(db);
-        tabbedPane.addTab("Search Pallets", null, searchPane, "search for produced pallets");
+        tabbedPane.addTab("Search All Pallets", null, searchPane, "search for all produced pallets");
 
         SearchCookiePane searchCookiePane = new SearchCookiePane(db);
-        tabbedPane.addTab("Search Pallets", null, searchCookiePane, "search for produced pallets");
+        tabbedPane.addTab("Search Cookie Pallets", null, searchCookiePane, "search for produced cookie pallets");
 
         SearchByDatePane searchByDatePane = new SearchByDatePane(db);
-        tabbedPane.addTab("Search Pallets", null, searchByDatePane, "search for produced pallets");
+        tabbedPane.addTab("Search By Date Pallets", null, searchByDatePane, "search for produced pallets by date");
 
 
         tabbedPane.setSelectedIndex(0);
@@ -54,7 +54,7 @@ public class ProductionGUI {
         tabbedPane.addChangeListener(new ChangeHandler());
         frame.addWindowListener(new WindowHandler());
 
-        frame.setSize(500, 400);
+        frame.setSize(600, 400);
         frame.setVisible(true);
 
         producePane.displayMessage("Connecting to database ...");
