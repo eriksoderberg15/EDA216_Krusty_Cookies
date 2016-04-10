@@ -34,11 +34,11 @@ public class ProductionGUI {
         tabbedPane = new JTabbedPane();
 
         ProducePane producePane = new ProducePane(db);
-        tabbedPane.addTab("User login", null, producePane,
-                "Log in as a new user");
+        tabbedPane.addTab("Produce Pallets", null, producePane,
+                "for producing pallets of cookies");
 
         SearchPane searchPane = new SearchPane(db);
-        tabbedPane.addTab("Book ticket", null, SearchPane, "Book a ticket");
+        tabbedPane.addTab("Search Pallets", null, searchPane, "search for produced pallets");
 
         tabbedPane.setSelectedIndex(0);
 
@@ -71,9 +71,9 @@ public class ProductionGUI {
          *            The change event (not used).
          */
         public void stateChanged(ChangeEvent e) {
-//            BasicPane selectedPane = (BasicPane) tabbedPane
-//                    .getSelectedComponent();
-//            selectedPane.entryActions();
+            BasicPane selectedPane = (BasicPane) tabbedPane
+                    .getSelectedComponent();
+            selectedPane.entryActions();
         }
     }
 
