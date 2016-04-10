@@ -155,54 +155,45 @@ public class Database {
 		//Läs in receptet för kakjäveln
 		PreparedStatement ps = null;
 		String sqlFetchRecipe = "SELECT * FROM IngredientsInCookies where cookieName = ?";	
-		String sqlIngrStockAmount = "SELECT stockAmount FROM Ingredients where ingredientName = ?";
-		String sqlSubtract = "UPDATE Ingredients SET stockAmount = stockAmount - ? WHERE ingredientName = ?";
 
 		try{
 			conn.setAutoCommit(false);
 			ps = conn.prepareStatement(sqlFetchRecipe);
 			ps.setString(1, cookieTypeMade);
 			ResultSet rs = ps.executeQuery();
+			
 			while(rs.next()){
 				String ingredientName= rs.getString("ingredientName");
 				String amountString = rs.getString("amount");
 				int amount = Integer.parseInt(amountString);
-				System.out.println(ingredientName);
-				System.out.println(amount);
 				map.put(ingredientName, amount);
 			}
 			/*Nu har vi läst hur mycket som vi kommer behöva av varje ingrediens
 			 * Så nu vill vi kolla om vi kan subtrahera detta från råvarulagret.
 			 */
 
-			PreparedStatement prepStmt = null;
 			//För varje ingrediens i receptet går vi in i råvarulagret och subtraherar ner värdet för varje ingrediens
-			for(String key: map.keySet()) {
-				String tempIngName = key;
-				int amountNeeded = map.get(key); //Mängd som behövs av ingrediensen
+			for(String tempIngName: map.keySet()) {
+				int amountNeeded = map.get(tempIngName); //Mängd som behövs av ingrediensen
 
-				prepStmt = conn.prepareStatement(sqlIngrStockAmount);
-				prepStmt.setString(1, tempIngName);	//
-				ResultSet res = prepStmt.executeQuery();
-
-				String ingredientAmount = res.getString("stockAmount");	
-				int stockAmount = Integer.parseInt(ingredientAmount);//Håller på en int som säger hur mycket vi har i lagret av ingrediensen
-
+				System.out.println("amountNeeded i updateStorage: " + amountNeeded);
+				int stockAmount = readStockAmount(tempIngName);
+				System.out.println("inne i updatestorage metoden och stocken är: " + stockAmount);
+				System.out.println("inne i updatestorage metoden och amountNeeded är: " + amountNeeded);
 				if(stockAmount<amountNeeded){
 					//I något av ingredienserna fanns det inte tillräckligt
 					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
 					conn.rollback();
 					return false;
 				}else{
-					prepStmt = conn.prepareStatement(sqlSubtract);
-					prepStmt.setInt(1, amountNeeded);
-					prepStmt.setString(2, tempIngName);
-					ResultSet noNeedOf = prepStmt.executeQuery();
+					subtractStock(amountNeeded, tempIngName);
+					System.out.println("vi kom in i subtract metoden och klarade oss ut");
 				}
 			}
 		}catch(SQLException e){
 			try {
 				conn.rollback();
+				System.out.println("rollback skit inträffade");
 				return false;
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -218,6 +209,39 @@ public class Database {
 		return true;	//Om vi inte har kommit in i if:en för stockAmount<amountNeeded så har ju allt gått prima
 	}
 
+	public void subtractStock(int amountToSubtract, String ingName){
+		String sqlSubtract = "UPDATE Ingredients SET stockAmount = stockAmount - ? WHERE ingredientName = ?";
+		PreparedStatement prepStmt = null;
+		try{
+			prepStmt = conn.prepareStatement(sqlSubtract);
+			prepStmt.setInt(1, amountToSubtract);
+			prepStmt.setString(2, ingName);
+			ResultSet noNeedOf = prepStmt.executeQuery();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	public int readStockAmount(String ingredient){		//method that reads the integer stockamount of an ingredient
+		String sqlIngrStockAmount = "SELECT stockAmount FROM Ingredients where ingredientName = ?";
+		PreparedStatement prepStmt = null;
+		
+		int stockAmount = 0;
+		try{
+			System.out.println("inne i readStockAmount för ingrediensen: " + ingredient);
+			prepStmt = conn.prepareStatement(sqlIngrStockAmount);
+			prepStmt.setString(1, ingredient);	//
+
+			ResultSet res = prepStmt.executeQuery();
+			res.next();
+			stockAmount = res.getInt("stockAmount");
+			
+			System.out.println("ingredientAmount: " + stockAmount);			
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		System.out.println("precis innan syso: " + stockAmount);
+		return stockAmount;
+	}
 
 	/*
 	 * Search-metoderna
