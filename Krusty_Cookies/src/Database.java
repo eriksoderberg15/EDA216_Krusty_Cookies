@@ -96,7 +96,7 @@ public class Database {
 	/**
 	 * 
 	 * @param cookieName
-	 * @return List of PalletInfo: place 0 = cookiName, place 1 = palletNumber, place 2 = date, place 3 = time  
+	 * @return List of PalletInfo:   
 	 */
 	public ArrayList<String> createPallet(String cookieName){
 		ArrayList<String> palletInfo = new ArrayList<String>();
@@ -248,22 +248,44 @@ public class Database {
 		}
 		return map;
 	}
-
-	public ArrayList<String> findBlockedPallets(String cookieName){
-		ArrayList<String> blockedCookies = new ArrayList<String>(); 
-		String findBlocked = "SELECT distinct cookieName FROM Pallets where isBlocked = true";
+	
+	public HashMap<String, ArrayList<String>> blockAllPallets(String cookieType){
+		String blockPallets = "UPDATE Pallets SET isBlocked = true where isBlocked = false and cookieName = ?";
+		PreparedStatement ps = null;
+		try{
+			ps = conn.prepareStatement(blockPallets);
+			ps.setString(1, cookieType);
+			ResultSet rs = ps.executeQuery();
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+		return findBlockedPallets(cookieType);
+	}
+	
+	//1: content, 2: prodDate, 3: location, 4: isBlocked
+	public HashMap<String, ArrayList<String>> findBlockedPallets(String cookieName){
+		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+		ArrayList<String> tempPalletInfo = new ArrayList<String>(); 
+		String findBlocked = "SELECT * FROM Pallets where isBlocked = true";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(findBlocked);
 			ResultSet rs = ps.executeQuery();
 
 			while(rs.next()){
-				blockedCookies.add(rs.getString("cookieName")); //ingen aning om det är så här man ska göra
+				String tempKey = Integer.toString(rs.getInt("palletNbr"));
+				
+				tempPalletInfo.add(rs.getString("cookieName"));
+				tempPalletInfo.add(rs.getString("prodDate"));
+				tempPalletInfo.add(rs.getString("location"));
+				tempPalletInfo.add(rs.getString("isBlocked"));
+				
+				map.put(tempKey, tempPalletInfo);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		return blockedCookies;
+		return map;
 	}
 
 	public ArrayList<Integer> findBlockedPallets(){
@@ -315,25 +337,6 @@ public class Database {
 		return temp;
 	}
 
-	//Gives an array of all cookies that are "bad" and hence being blocked at the moment
-	public  ArrayList<String> cookiesCurrentlyBlocked(){
-		ArrayList<String> temp = new ArrayList<String>();
-		return temp;
-	}
 
-	//Gives an array of all palletIds containing cookies that are currently blocked
-	public ArrayList<Integer> findBlocketPallets(){
-		ArrayList<Integer> temp = new ArrayList<Integer>();
-		return temp;
-	}
-	//Ingen aning om hur vi ska göra med denna metod...
-	public ArrayList<Integer> deliveredPalletsForCosutmer(int costumerId){
-		ArrayList<Integer> temp = new ArrayList<Integer>();
-		return temp;
-	}
-
-	public boolean showOrdersForInterval(String start, String end){
-		return true;
-	}
-
+	
 }
