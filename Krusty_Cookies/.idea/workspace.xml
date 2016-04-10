@@ -23,33 +23,47 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Database.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="515">
-              <caret line="375" column="57" selection-start-line="375" selection-start-column="57" selection-end-line="375" selection-end-column="57" />
+            <state relative-caret-position="545">
+              <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
               <folding>
                 <element signature="e#245#246#0" expanded="true" />
                 <element signature="e#263#264#0" expanded="true" />
                 <element signature="e#1424#1425#0" expanded="true" />
                 <element signature="e#1450#1451#0" expanded="true" />
                 <element signature="e#1626#1634#0" expanded="true" />
-                <element signature="e#2466#2474#0" expanded="true" />
-                <element signature="e#4385#4402#0" expanded="true" />
-                <element signature="e#6939#6947#0" expanded="true" />
-                <element signature="e#7057#7084#0" expanded="true" />
-                <element signature="e#7962#7970#0" expanded="true" />
-                <element signature="e#8489#8498#0" expanded="true" />
-                <element signature="e#11197#11205#0" expanded="true" />
-                <marker date="1460313214000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
-                <marker date="1460313214000" expanded="true" signature="2668:2770" placeholder="INSERT INTO Pallets... " />
-                <marker date="1460313214000" expanded="true" signature="4499:4554" placeholder="SELECT * FRO... IngredientsInCookies" />
-                <marker date="1460313214000" expanded="true" signature="4589:4649" placeholder="SELECT stock... Ingredients" />
-                <marker date="1460313214000" expanded="true" signature="4676:4753" placeholder="UPDATE Ingre... " />
-                <marker date="1460313214000" expanded="true" signature="7157:7210" placeholder="SELECT * FRO... Pallets" />
-                <marker date="1460313214000" expanded="true" signature="7999:8061" placeholder="SELECT disti... Pallets" />
-                <marker date="1460313214000" expanded="true" signature="8527:8588" placeholder="SELECT disti... Pallets" />
-                <marker date="1460313214000" expanded="true" signature="11233:11286" placeholder="SELECT * FRO... Pallets" />
+                <element signature="e#2391#2399#0" expanded="true" />
+                <element signature="e#4310#4327#0" expanded="true" />
+                <element signature="e#6864#6872#0" expanded="true" />
+                <element signature="e#6982#7009#0" expanded="true" />
+                <element signature="e#8400#8427#0" expanded="true" />
+                <element signature="e#8481#8489#0" expanded="true" />
+                <element signature="e#9197#9206#0" expanded="true" />
+                <element signature="e#9635#9636#0" expanded="true" />
+                <element signature="e#9650#9651#0" expanded="true" />
+                <element signature="e#9766#9767#0" expanded="true" />
+                <element signature="e#9793#9794#0" expanded="true" />
+                <element signature="e#9831#9832#0" expanded="true" />
+                <element signature="e#9858#9859#0" expanded="true" />
+                <element signature="e#10080#10081#0" expanded="true" />
+                <element signature="e#10098#10099#0" expanded="true" />
+                <element signature="e#10142#10143#0" expanded="true" />
+                <element signature="e#10169#10170#0" expanded="true" />
+                <element signature="e#10329#10338#0" expanded="true" />
+                <element signature="e#10481#10490#0" expanded="true" />
+                <element signature="e#11211#11219#0" expanded="true" />
+                <marker date="1460313931000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
+                <marker date="1460313931000" expanded="true" signature="2593:2695" placeholder="INSERT INTO Pallets... " />
+                <marker date="1460313931000" expanded="true" signature="4424:4479" placeholder="SELECT * FRO... IngredientsInCookies" />
+                <marker date="1460313931000" expanded="true" signature="4514:4574" placeholder="SELECT stock... Ingredients" />
+                <marker date="1460313931000" expanded="true" signature="4601:4678" placeholder="UPDATE Ingre... " />
+                <marker date="1460313931000" expanded="true" signature="7082:7135" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460313931000" expanded="true" signature="7877:7955" placeholder="UPDATE Palle... " />
+                <marker date="1460313931000" expanded="true" signature="8518:8562" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460313931000" expanded="true" signature="9235:9296" placeholder="SELECT disti... Pallets" />
+                <marker date="1460313931000" expanded="true" signature="11247:11300" placeholder="SELECT * FRO... Pallets" />
               </folding>
             </state>
           </provider>
@@ -75,10 +89,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchCookiePane.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="SearchCookiePane.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SearchCookiePane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="345">
+            <state relative-caret-position="-370">
               <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
               <folding>
                 <element signature="imports" expanded="true" />
@@ -146,8 +160,8 @@
         <option value="$PROJECT_DIR$/src/ProducePane.java" />
         <option value="$PROJECT_DIR$/src/ProductionGUI.java" />
         <option value="$PROJECT_DIR$/src/SearchPalletNbrPane.java" />
-        <option value="$PROJECT_DIR$/src/Database.java" />
         <option value="$PROJECT_DIR$/src/SearchCookiePane.java" />
+        <option value="$PROJECT_DIR$/src/Database.java" />
       </list>
     </option>
   </component>
@@ -650,12 +664,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1460283930983</updated>
-      <workItem from="1460283932266" duration="19735000" />
+      <workItem from="1460283932266" duration="19789000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19735000" />
+    <option name="totallyTimeSpent" value="19789000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="436" y="27" width="835" height="762" extended-state="0" />
@@ -763,39 +777,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="515">
-          <caret line="375" column="57" selection-start-line="375" selection-start-column="57" selection-end-line="375" selection-end-column="57" />
-          <folding>
-            <element signature="e#245#246#0" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-            <element signature="e#1450#1451#0" expanded="true" />
-            <element signature="e#1626#1634#0" expanded="true" />
-            <element signature="e#2466#2474#0" expanded="true" />
-            <element signature="e#4385#4402#0" expanded="true" />
-            <element signature="e#6939#6947#0" expanded="true" />
-            <element signature="e#7057#7084#0" expanded="true" />
-            <element signature="e#7962#7970#0" expanded="true" />
-            <element signature="e#8489#8498#0" expanded="true" />
-            <element signature="e#11197#11205#0" expanded="true" />
-            <marker date="1460313214000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
-            <marker date="1460313214000" expanded="true" signature="2668:2770" placeholder="INSERT INTO Pallets... " />
-            <marker date="1460313214000" expanded="true" signature="4499:4554" placeholder="SELECT * FRO... IngredientsInCookies" />
-            <marker date="1460313214000" expanded="true" signature="4589:4649" placeholder="SELECT stock... Ingredients" />
-            <marker date="1460313214000" expanded="true" signature="4676:4753" placeholder="UPDATE Ingre... " />
-            <marker date="1460313214000" expanded="true" signature="7157:7210" placeholder="SELECT * FRO... Pallets" />
-            <marker date="1460313214000" expanded="true" signature="7999:8061" placeholder="SELECT disti... Pallets" />
-            <marker date="1460313214000" expanded="true" signature="8527:8588" placeholder="SELECT disti... Pallets" />
-            <marker date="1460313214000" expanded="true" signature="11233:11286" placeholder="SELECT * FRO... Pallets" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/SearchCookiePane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
+        <state relative-caret-position="-370">
           <caret line="58" column="38" selection-start-line="58" selection-start-column="38" selection-end-line="58" selection-end-column="38" />
           <folding>
             <element signature="imports" expanded="true" />
@@ -803,6 +787,50 @@
             <element signature="e#644#645#0" expanded="true" />
             <element signature="e#3230#3231#0" expanded="true" />
             <element signature="e#3266#3267#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="545">
+          <caret line="380" column="5" selection-start-line="380" selection-start-column="5" selection-end-line="380" selection-end-column="5" />
+          <folding>
+            <element signature="e#245#246#0" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#1424#1425#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="e#1626#1634#0" expanded="true" />
+            <element signature="e#2391#2399#0" expanded="true" />
+            <element signature="e#4310#4327#0" expanded="true" />
+            <element signature="e#6864#6872#0" expanded="true" />
+            <element signature="e#6982#7009#0" expanded="true" />
+            <element signature="e#8400#8427#0" expanded="true" />
+            <element signature="e#8481#8489#0" expanded="true" />
+            <element signature="e#9197#9206#0" expanded="true" />
+            <element signature="e#9635#9636#0" expanded="true" />
+            <element signature="e#9650#9651#0" expanded="true" />
+            <element signature="e#9766#9767#0" expanded="true" />
+            <element signature="e#9793#9794#0" expanded="true" />
+            <element signature="e#9831#9832#0" expanded="true" />
+            <element signature="e#9858#9859#0" expanded="true" />
+            <element signature="e#10080#10081#0" expanded="true" />
+            <element signature="e#10098#10099#0" expanded="true" />
+            <element signature="e#10142#10143#0" expanded="true" />
+            <element signature="e#10169#10170#0" expanded="true" />
+            <element signature="e#10329#10338#0" expanded="true" />
+            <element signature="e#10481#10490#0" expanded="true" />
+            <element signature="e#11211#11219#0" expanded="true" />
+            <marker date="1460313931000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
+            <marker date="1460313931000" expanded="true" signature="2593:2695" placeholder="INSERT INTO Pallets... " />
+            <marker date="1460313931000" expanded="true" signature="4424:4479" placeholder="SELECT * FRO... IngredientsInCookies" />
+            <marker date="1460313931000" expanded="true" signature="4514:4574" placeholder="SELECT stock... Ingredients" />
+            <marker date="1460313931000" expanded="true" signature="4601:4678" placeholder="UPDATE Ingre... " />
+            <marker date="1460313931000" expanded="true" signature="7082:7135" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460313931000" expanded="true" signature="7877:7955" placeholder="UPDATE Palle... " />
+            <marker date="1460313931000" expanded="true" signature="8518:8562" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460313931000" expanded="true" signature="9235:9296" placeholder="SELECT disti... Pallets" />
+            <marker date="1460313931000" expanded="true" signature="11247:11300" placeholder="SELECT * FRO... Pallets" />
           </folding>
         </state>
       </provider>
