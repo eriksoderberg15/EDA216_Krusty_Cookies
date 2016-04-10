@@ -169,7 +169,7 @@ public class ProducePane extends BasicPane {
          */
         private void fillNameList() {
             cookieListModel.removeAllElements();
-            ArrayList<String> cookies = db.getCookies();
+            ArrayList<String> cookies = db.showCreatableCookies();
 
             for(String c : cookies){
                 cookieListModel.addElement(c);
@@ -184,7 +184,7 @@ public class ProducePane extends BasicPane {
             String date = dateandtime.substring(0, dateandtime.indexOf("")-1);
             String time = dateandtime.substring(dateandtime.indexOf(""));
             System.out.println(date + " : " + time); //2014-08-06 15:59:48
-            
+
             fields[COOKIE_NAME].setText(cookie);
             fields[PALLET_NBR].setText("" + palletNbr);
             fields[PALLET_DATE].setText(date);

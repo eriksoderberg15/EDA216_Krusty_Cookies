@@ -1,5 +1,3 @@
-
-
 import java.sql.*;
 import java.util.*;
 
@@ -19,7 +17,7 @@ public class Database {
 	public Database() {
 		conn = null;
 	}
-	
+
 	/**
 	 * Open a connection to the database, using the specified user name and
 	 * password.
@@ -47,7 +45,7 @@ public class Database {
 		}
 		return true;
 	}
-	
+
 	/**
 	 * Close the connection to the database.
 	 */
@@ -68,70 +66,154 @@ public class Database {
 	public boolean isConnected() {
 		return conn != null;
 	}
-	
-	public boolean isUser(String UID){
-		//Creates the statement needed to see if the user exists
-		PreparedStatement prepStmt = null;
-		try{
-			String sql = "SELECT * FROM Users WHERE UserName = ? "; //Istället för entiteten users kanske vi har cookie workers?
-			prepStmt = conn.prepareStatement(sql);
-			prepStmt.setString(1, UID);
-			//Checks if the result Set has 1 "next" or a first object, hence whether its empty or not
-			ResultSet rs = prepStmt.executeQuery();
-			if(rs.next()){
-				String userN= rs.getString("userName");
-				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
-				System.out.println(userN + "is logged in");
-				return true;
-			}else
-				return false;
-		}catch(SQLException e){
-			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
+
+	public boolean createPallet(String cookieName){
+		/* 1. läs in alla kaktyper som går att skapa
+		 * 2. tryck på ett kaknamn
+		 * 3. fyll i hur många som ska produceras
+		 * 4. Skapa en pallet i table Pallet
+		 * 5. Subtrahera ner ingredienserna i lagret
+		 * 6. Om det inte finns tillräckligt med ingredienser måste vi printa ut det i GUI:t
+		 */
+		ArrayList<String> cookieNames = new ArrayList<String>();
+		String sql = "SELECT * FROM Cookies";
+		PreparedStatement ps = null;
+		try {
+			ps = conn.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				//movies.add(rs.getString("name"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
 			e.printStackTrace();
-			return false;
-		}
-		//If it is not possible to "log in" or find the user one should always close the statement
-		finally{
-			try{
-				prepStmt.close();
-			}catch(SQLException e){
+		} finally {
+			try {
+				ps.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		
+		return false; //ÄNDRA (autofyll)
+
+
+		//DETTA ÄR EN TESTKOMENTAR FÖR ATT KOLLA OM ALLT FUNGERAR
 	}
-	
-	
-	// Methods for the Krusty database
-	
-	public boolean createOrder(){
-		return true;
-	}
-	
-	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
-		PreparedStatement prepStmt = null;
+	//	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
+	//		PreparedStatement prepStmt = null;
+	//		try{
+	//			String sql = "SELECT count(*) FROM Pallets WHERE prodDate > start and prodDate < end"
+	//					+ "  and cName = cookieName";
+	//			prepStmt = conn.prepareStatement(sql);
+	//			
+	//			ResultSet rs = prepStmt.executeQuery();
+	//			if(rs.next()){
+	//				String userN= rs.getString("userName");
+	//				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
+	//				System.out.println(userN + "is logged in");
+	//				return 0;
+	//			}else
+	//				return 0;
+	//		}catch(SQLException e){
+	//			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
+	//			e.printStackTrace();
+	//			return 0;
+	//		}
+	//	}
+	public boolean updateStorage(String cookieTypeMade){
+		//Använder en hashmap för att mappa kvantitet till varje ingrediensnamn
+		HashMap<String, Integer> map = new HashMap<String, Integer>();
+
+		//Läs in receptet för kakjäveln
+		PreparedStatement ps = null;
+		String sqlFetchRecipe = "SELECT * FROM IngredientsInCookies where cookieName = cookieTypeMade";	
+		String sqlIngrAmount = "SELECT stockAmount FROM Ingredients where ingredientName = tempIngName";
+		String sqlSubtract = "UPDATE Ingredients SET stockAmount = stockAmount - amountNeeded WHERE ingredientName = tempIngName";
 		try{
-			String sql = "SELECT count(*) FROM Pallets WHERE prodDate > start and prodDate < end"
-					+ "  and cName = cookieName";
-			prepStmt = conn.prepareStatement(sql);
-			
-			ResultSet rs = prepStmt.executeQuery();
-			if(rs.next()){
-				String userN= rs.getString("userName");
-				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
-				System.out.println(userN + "is logged in");
-				return 0;
-			}else
-				return 0;
+			ps = conn.prepareStatement(sqlFetchRecipe);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				String ingredientName= rs.getString("ingredientName");
+				String amountString = rs.getString("amount");
+				int amount = Integer.parseInt(amountString);
+				System.out.println(ingredientName);
+				System.out.println(amount);
+				map.put(ingredientName, amount);
+			}
+			/*Nu har vi läst hur mycket som vi kommer behöva av varje ingrediens
+			 * Så nu vill vi kolla om vi kan subtrahera detta från råvarulagret.
+			 */
+
+			PreparedStatement prepStmt = null;
+			for(String key: map.keySet()) {
+				String tempIngName = key;
+				int amountNeeded = map.get(key); //Så mycket vi behöver för att baka kakan
+				//Här vill vi hämta mängd för ingrediensen i råvarulagret
+				prepStmt = conn.prepareStatement(sqlIngrAmount);
+				ResultSet res = prepStmt.executeQuery();
+				String ingredientAmount = rs.getString("stockAmount");
+				int ingAmountInt = Integer.parseInt(ingredientAmount);
+
+				if(ingAmountInt<amountNeeded){
+					//I något av ingredienserna fanns det inte tillräckligt
+					conn.rollback();
+					return true;
+				}else{
+					prepStmt = conn.prepareStatement(sqlSubtract);
+					ResultSet noNeedOf = prepStmt.executeQuery();
+					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
+					return false;
+				}
+			}
 		}catch(SQLException e){
-			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
+			try {
+				conn.rollback();
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
 			e.printStackTrace();
-			return 0;
 		}
 	}
-	public void updateStorage(String cookieTypeMade){
-		
+
+
+	/*
+	 * Search-metoderna
+	 */
+	
+	public void findPalletsContainingCookie(String cookieToFind){
+		String findPallets = "SELECT palletNbr FROM Pallets where cookieName = cookieToFind";
+		ArrayList<Integer> thePallets = new ArrayList<Integer>();
+		PreparedStatement ps = null;
+		try{
+			ps = conn.prepareStatement(findPallets);
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				thePallets.add(rs.getInt("palletNbr"));
+			}	
+		}catch(SQLException e){
+			e.printStackTrace();
+			System.out.println("troligtvis fanns det inga pallets inglagda i systemet därav nullpointer typ");
+		}
 	}
+	
+	public void findBlockedCookies(){
+		ArrayList<String> blockedCookies = new ArrayList<String>(); 
+		String findBlocked = "SELECT distinct cookieName FROM Pallets where state = blocked";
+		PreparedStatement ps = null;
+		try{
+			ps = conn.prepareStatement(findBlocked);
+			ResultSet rs = ps.executeQuery();
+			
+			while(rs.next()){
+				blockedCookies.add(rs.getString(rs.getRow())); //ingen aning om det är så här man ska göra
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+	}
+	
 	public int storageAmountLeft(String ingredientName){
 		return 0;
 	}
@@ -139,11 +221,11 @@ public class Database {
 	public String lastDelivery (String ingredientName) {
 		return "tillsvidare";
 	}
-	
+
 	public String displayAllRecipees(){
 		return "tillsvidare";
 	}
-	
+
 	/*
 	 * Tänker mig att vi har en vektor som input.
 	 * Plats 1 anger recept namn, därefter har vi ingredientsnamn1, mängd1, ingredientnamn2, mängd2, etc...??
@@ -163,13 +245,13 @@ public class Database {
 		ArrayList<Integer> temp = new ArrayList<Integer>();
 		return temp;
 	}
-	
+
 	//Gives an array of all cookies that are "bad" and hence being blocked at the moment
 	public  ArrayList<String> cookiesCurrentlyBlocked(){
 		ArrayList<String> temp = new ArrayList<String>();
 		return temp;
 	}
-	
+
 	//Gives an array of all palletIds containing cookies that are currently blocked
 	public ArrayList<Integer> findBlocketPallets(){
 		ArrayList<Integer> temp = new ArrayList<Integer>();
@@ -180,15 +262,9 @@ public class Database {
 		ArrayList<Integer> temp = new ArrayList<Integer>();
 		return temp;
 	}
-	
+
 	public boolean showOrdersForInterval(String start, String end){
 		return true;
 	}
 
-	/**
-	 * Return method for all available cookies to be produced
-	 * @return list of cookies
-     */
-	public ArrayList<String> getCookies() {
-	}
 }
