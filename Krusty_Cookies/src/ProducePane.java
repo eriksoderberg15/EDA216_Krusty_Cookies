@@ -89,7 +89,7 @@ public class ProducePane extends BasicPane {
             cookieNameList = new JList<String>(cookieListModel);
             cookieNameList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
             cookieNameList.setPrototypeCellValue("123456789012");
-            cookieNameList.addListSelectionListener(new NameSelectionListener());
+            cookieNameList.addListSelectionListener(new CookieSelectionListener());
             JScrollPane p1 = new JScrollPane(cookieNameList);
 
 //            dateListModel = new DefaultListModel<String>();

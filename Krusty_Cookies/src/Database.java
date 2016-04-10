@@ -116,16 +116,15 @@ public class Database {
 			try {
 				conn.setAutoCommit(false);
 				
-				ps = conn.prepareStatement(deductSeat);	
+				ps = conn.prepareStatement(createPallet);	
 				
 				ps.setString(1, cookieName);
 				ps.setString(2, cookieName);
 				ps.setString(3, cookieName);
 				ps.setString(4, cookieName);
 				
-				psSeats.setString(2, date);
 				
-				psSeats.executeUpdate();
+				ps.executeUpdate();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
