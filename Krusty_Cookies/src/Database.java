@@ -1,5 +1,8 @@
 import java.sql.*;
 import java.util.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /*
  * Class for all database functionality
@@ -94,20 +97,48 @@ public class Database {
 		return cookieNames;
 
 	}
-	public int createPallet(String cookieName){
-		/* 1. läs in alla kaktyper som går att skapa
-		 * 2. tryck på ett kaknamn
-		 * 3. fyll i hur många som ska produceras
-		 * 4. Skapa en pallet i table Pallet
-		 * 5. Subtrahera ner ingredienserna i lagret
-		 * 6. Om det inte finns tillräckligt med ingredienser måste vi printa ut det i GUI:t
-		 */
+	//Allt visas som strängar i GUIt, därav returnerar vi här en lista med strängar
+	
+	/**
+	 * 
+	 * @param cookieName
+	 * @return List of PalletInfo: place 0 = cookiName, place 1 = palletNumber, place 2 = date, place 3 = time  
+	 */
+	public ArrayList<String> createPallet(String cookieName){
+		ArrayList<String> palletInfo = new ArrayList<String>();
 		if(updateStorage(cookieName)){
 			//Om det går: skapa då palletten
+			DateFormat df = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+			String date = df.format(new Date());
+			
+			String createPallet = "INSERT INTO Pallets(palletNbr, cookieName, prodDate, state, orderId) values(?,?,?,?,?)";
+			PreparedStatement ps = null;
+			try {
+				conn.setAutoCommit(false);
+				
+				ps = conn.prepareStatement(deductSeat);	
+				
+				ps.setString(1, cookieName);
+				ps.setString(2, cookieName);
+				ps.setString(3, cookieName);
+				ps.setString(4, cookieName);
+				
+				psSeats.setString(2, date);
+				
+				psSeats.executeUpdate();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+			
+			
+			
+			
+			
+			
+			return palletInfo;
+		}else{
+			return palletInfo; 
 		}
-
-
-		return 0; //bör vara palletnumber
 	}
 	//	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
 	//		PreparedStatement prepStmt = null;
@@ -130,7 +161,7 @@ public class Database {
 	//			return 0;
 	//		}
 	//	}
-	public boolean updateStorage(String cookieTypeMade){
+	public boolean updateStorage(String cookieTypeMade){		//KOLLA IGENOM DENNA METOD. DEN ÄR FEL
 		//Använder en hashmap för att mappa kvantitet till varje ingrediensnamn
 		HashMap<String, Integer> map = new HashMap<String, Integer>();
 
@@ -185,6 +216,7 @@ public class Database {
 			}
 
 		}
+		return false;
 
 	}
 
