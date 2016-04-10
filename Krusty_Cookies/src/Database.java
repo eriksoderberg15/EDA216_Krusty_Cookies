@@ -159,6 +159,7 @@ public class Database {
 		String sqlSubtract = "UPDATE Ingredients SET stockAmount = stockAmount - ? WHERE ingredientName = ?";
 
 		try{
+			conn.setAutoCommit(false);
 			ps = conn.prepareStatement(sqlFetchRecipe);
 			ps.setString(1, cookieTypeMade);
 			ResultSet rs = ps.executeQuery();
@@ -189,8 +190,8 @@ public class Database {
 
 				if(stockAmount<amountNeeded){
 					//I något av ingredienserna fanns det inte tillräckligt
-					conn.rollback();
 					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
+					conn.rollback();
 					return false;
 				}else{
 					prepStmt = conn.prepareStatement(sqlSubtract);

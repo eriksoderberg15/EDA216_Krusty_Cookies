@@ -54,7 +54,7 @@ public class ProductionGUI {
         tabbedPane.addChangeListener(new ChangeHandler());
         frame.addWindowListener(new WindowHandler());
 
-        frame.setSize(500, 400);
+        frame.setSize(600, 400);
         frame.setVisible(true);
 
         producePane.displayMessage("Connecting to database ...");

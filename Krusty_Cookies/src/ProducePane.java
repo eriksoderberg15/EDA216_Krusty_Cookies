@@ -55,15 +55,11 @@ public class ProducePane extends BasicPane {
              */
             private static final int PALLET_DATE = 2;
 
-            /**
-             * The number of the time the pallet was produced field.
-             */
-            private static final int PALLET_TIME = 3;
 
             /**
              * The total number of fields.
              */
-            private static final int NBR_FIELDS = 4;
+            private static final int NBR_FIELDS = 3;
 
             /**
              * Create the Produce Pallets pane.
@@ -73,6 +69,7 @@ public class ProducePane extends BasicPane {
              */
             public ProducePane(Database db) {
                 super(db);
+//                fillNameList();
             }
 
             /**
@@ -106,7 +103,7 @@ public class ProducePane extends BasicPane {
         }
 
         /**
-         * Create the top panel, containing the fields with the performance data.
+         * Create the top panel, containing the fields with the cookie data.
          *
          * @return The top panel.
          */
@@ -115,7 +112,7 @@ public class ProducePane extends BasicPane {
             texts[COOKIE_NAME] = "Cookie";
             texts[PALLET_NBR] = "Pallet Number";
             texts[PALLET_DATE] = "Date";
-            texts[PALLET_TIME] = "Time";
+
 
             fields = new JTextField[NBR_FIELDS];
             for (int i = 0; i < fields.length; i++) {
@@ -171,8 +168,7 @@ public class ProducePane extends BasicPane {
             for(String c : cookies){
                 cookieListModel.addElement(c);
             }
-            //db.getCookieNames(cookieListModel();
-            //cookieNameList.setModel(cookieListModel);
+            cookieNameList.setModel(cookieListModel);
         }
 
     /**
@@ -183,7 +179,6 @@ public class ProducePane extends BasicPane {
             fields[COOKIE_NAME].setText(pallet.get(0));
             fields[PALLET_NBR].setText(pallet.get(1));
             fields[PALLET_DATE].setText(pallet.get(2));
-            fields[PALLET_TIME].setText(pallet.get(3));
 
         }
 
