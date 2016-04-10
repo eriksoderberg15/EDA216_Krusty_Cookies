@@ -78,19 +78,18 @@ public class Database {
 				cookieNames.add(rs.getString("cookieName"));
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
 				ps.close();
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		return cookieNames;
 
 	}
+	
 	//Allt visas som strängar i GUIt, därav returnerar vi här en lista med strängar
 
 	/**
@@ -324,8 +323,31 @@ public class Database {
 	public boolean addRecipee(ArrayList<String> newRecipee){
 		return true;
 	}
-	public String getPalletInfo(int palletId){
-		return "Tillsvidare";
+	public ArrayList<String> getPalletInfo(int palletId){
+		ArrayList<String> palletInfo = new ArrayList<String>();
+		String getPalletInfo = "SELECT * FROM Pallets where palletNbr = ?";
+		
+		PreparedStatement ps = null;
+		
+		try{
+			ps = conn.prepareStatement(getPalletInfo);
+			ps.setInt(1, palletId);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				String tempKey = Integer.toString(rs.getInt("palletNbr"));
+				
+				palletInfo.add(rs.getString("cookieName"));
+				palletInfo.add(rs.getString("prodDate"));
+				palletInfo.add(rs.getString("location"));
+				palletInfo.add(rs.getString("isBlocked"));
+				
+			}
+		}catch(SQLException e){
+			e.printStackTrace();
+		}
+			
+		return palletInfo;
 	}
 	//Hitta alla pallar som bär på kaktypen cookieName
 	public ArrayList<Integer> palletsContaining(String cookieName){
