@@ -192,7 +192,6 @@ public class SearchPalletNbrPane extends BasicPane {
             if (cookieNameList.isSelectionEmpty()) {
                 return;
             }
-            clearFields();
             clearMessage();
             String cookieName = cookieNameList.getSelectedValue();
             System.out.println("Vi har tryckt på cookie: " + cookieName);
@@ -218,7 +217,7 @@ public class SearchPalletNbrPane extends BasicPane {
             String cookieName = cookieNameList.getSelectedValue();
             ArrayList<String> pallet = db.createPallet(cookieName);
             if(!pallet.isEmpty()) {
-                fillFields(pallet);
+//                fillFields(pallet);
                 displayMessage("One pallet of " + cookieName + " was successfully produced!");
             }else{
                 displayMessage("The pallet could not be produced, not enough ingredients.");
