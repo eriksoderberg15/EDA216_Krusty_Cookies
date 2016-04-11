@@ -103,27 +103,37 @@ public class Database {
 			//Om det går: skapa då palletten
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			String date = df.format(new Date());
-			String createPallet = "INSERT INTO Pallets(palletNbr, cookieName, prodDate, location, isBlocked, orderId) values(?,?,?,?,?,?)";
+			String createPallet = "INSERT INTO Pallets(cookieName, prodDate, location, isBlocked) values(?,?,?,?)";
 			PreparedStatement ps = null;
 			try {
 				conn.setAutoCommit(false);
 
 				ps = conn.prepareStatement(createPallet);	
-
-				ps.setString(1, "pallettNummer");	//Cookie namn
-				ps.setString(2, cookieName);	//Cookie namn
-				ps.setString(3, date);	//pallet nummer
-				ps.setString(4, "location");	//datum
-				ps.setString(5, "false");	//tid
-				ps.setString(6, "orderIdSpelaringenroll");	//tid
-
+				System.out.println("precis innan setstringarna");
+				
+			
+				ps.setString(1, cookieName);	//Cookie namn
+				ps.setString(2, date);	//pallet nummer
+				ps.setString(3, "location");	//datum
+				ps.setString(4, "false");	//tid
+				
+				System.out.println("precis efter setstringarna");
+				
 				ps.executeUpdate();
+				System.out.println("precis efter executeUpdate");
+
 			} catch (SQLException e) {
 				e.printStackTrace();
+			}finally {
+				try {
+					ps.close();
+				} catch (SQLException e) {
+					e.printStackTrace();
+				}
 			}
 			return palletInfo;
 		}else{
-			System.out.println("Det gick inte att skapa palletten för det fanns inte tillräckligt med ingredienser");
+			System.out.println("Metoden createPallet failade för metoden updateStorage returnerade false");
 			return palletInfo; 
 		}
 	}
@@ -149,8 +159,7 @@ public class Database {
 	//		}
 	//	}
 	public boolean updateStorage(String cookieTypeMade){		
-		//Använder en hashmap för att mappa kvantitet till varje ingrediensnamn
-		HashMap<String, Integer> map = new HashMap<String, Integer>();
+		HashMap<String, Integer> map = new HashMap<String, Integer>();	//map quantity to an ingredient
 
 		//Läs in receptet för kakjäveln
 		PreparedStatement ps = null;
@@ -216,7 +225,7 @@ public class Database {
 			prepStmt = conn.prepareStatement(sqlSubtract);
 			prepStmt.setInt(1, amountToSubtract);
 			prepStmt.setString(2, ingName);
-			ResultSet noNeedOf = prepStmt.executeQuery();
+			int useless = prepStmt.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
