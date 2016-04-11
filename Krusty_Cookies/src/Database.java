@@ -99,35 +99,38 @@ public class Database {
 	 */
 	public ArrayList<String> createPallet(String cookieName){
 		ArrayList<String> palletInfo = new ArrayList<String>();
+		
 		if(updateStorage(cookieName)){
 			//Om det går: skapa då palletten
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			String date = df.format(new Date());
-			String createPallet = "INSERT INTO Pallets(cookieName, prodDate, location, isBlocked) values(?,?,?,?)";
+			String createPallet = "INSERT INTO Pallets(cookieName, prodDate, orderId) values(?,?,?)";
 			PreparedStatement ps = null;
 			try {
 				conn.setAutoCommit(false);
-
 				ps = conn.prepareStatement(createPallet);	
 				System.out.println("precis innan setstringarna");
 				
-			
+				//insert into pallets (cookieName, prodDate, orderId) values('Nut ring', '2016-03-13', '4');
+				
 				ps.setString(1, cookieName);	//Cookie namn
 				ps.setString(2, date);	//pallet nummer
-				ps.setString(3, "location");	//datum
-				ps.setString(4, "false");	//tid
-				
+				ps.setInt(3, 3);	//slänger in för order 3
+					
 				System.out.println("precis efter setstringarna");
-				
 				ps.executeUpdate();
-				System.out.println("precis efter executeUpdate");
-
+				System.out.println("direkt efter execute");
+				palletInfo.add(cookieName);
+				palletInfo.add(date);
+				System.out.println("direkt efter det att jag lagt till i arraylisten");
 			} catch (SQLException e) {
+				System.out.println("i en catch");
 				e.printStackTrace();
 			}finally {
 				try {
 					ps.close();
 				} catch (SQLException e) {
+					System.out.println("det verkar som det inte gickatt stäng ps");
 					e.printStackTrace();
 				}
 			}
@@ -267,7 +270,7 @@ public class Database {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-
+				
 				tempPalletInfo.add(rs.getString("cookieName"));
 				tempPalletInfo.add(rs.getString("prodDate"));
 				tempPalletInfo.add(rs.getString("location"));
@@ -283,12 +286,12 @@ public class Database {
 	}
 
 	public HashMap<String, ArrayList<String>> blockAllPallets(String cookieType){
-		String blockPallets = "UPDATE Pallets SET isBlocked = true where isBlocked = false and cookieName = ?";
+		String blockPallets = "UPDATE Pallets SET isBlocked = 'true' where isBlocked = 'false' and cookieName = ?";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(blockPallets);
 			ps.setString(1, cookieType);
-			ps.executeQuery();
+			ps.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
