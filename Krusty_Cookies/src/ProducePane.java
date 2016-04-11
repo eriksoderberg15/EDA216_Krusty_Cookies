@@ -24,16 +24,6 @@ public class ProducePane extends BasicPane {
              * The cookiename list.
              */
             private JList<String> cookieNameList;
-//
-//            /**
-//             * The list model for the performance date list.
-//             */
-//            private DefaultListModel<String> dateListModel;
-//
-//            /**
-//             * The performance date list.
-//             */
-//            private JList<String> dateList;
 
             /**
              * The text fields where the cookie data is shown.
@@ -64,7 +54,6 @@ public class ProducePane extends BasicPane {
              */
             public ProducePane(Database db) {
                 super(db);
-//                fillNameList();
             }
 
             /**
@@ -81,19 +70,9 @@ public class ProducePane extends BasicPane {
             cookieNameList.setPrototypeCellValue("123456789012");
             cookieNameList.addListSelectionListener(new CookieSelectionListener());
             JScrollPane p1 = new JScrollPane(cookieNameList);
-
-//            dateListModel = new DefaultListModel<String>();
-
-//            dateList = new JList<String>(dateListModel);
-//            dateList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//            dateList.setPrototypeCellValue("123456789012");
-//            dateList.addListSelectionListener(new DateSelectionListener());
-//            JScrollPane p2 = new JScrollPane(dateList);
-
             JPanel p = new JPanel();
-            p.setLayout(new GridLayout(1, 2)); //ViewportLayout()??
+            p.setLayout(new GridLayout(1, 2));
             p.add(p1);
-//            p.add(p2);
             return p;
         }
 
@@ -221,13 +200,7 @@ public class ProducePane extends BasicPane {
                 if (cookieNameList.isSelectionEmpty() ){
                     return;
                 }
-                /* If a order number is not filled.. Promp to be filled..*/
-//                if (OrderField.instance().isEmpty()) {
-//                    displayMessage("Must type in a order number.");
-//                    return;
-//                }
                 String cookieName = cookieNameList.getSelectedValue();
-//                String orderId = orderField.getSelectedValue();
                 ArrayList<String> pallet = db.createPallet(cookieName);
                 if(!pallet.isEmpty()) {
                     fillFields(pallet);

@@ -27,12 +27,8 @@ public class SearchByDatePane extends BasicPane {
      */
     private JList<String> cookieNameList;
 
-    private boolean blockcheck = false;
-
-    private JLabel cookieNameLabel;
-
-    JTextField fromInput;
-    JTextField toInput;
+    private JTextField fromInput;
+    private JTextField toInput;
     /**
      * Create a BasicPane object.
      *
@@ -47,8 +43,7 @@ public class SearchByDatePane extends BasicPane {
     }
 
     public JComponent createTopPanel() {
-        JPanel p = new JPanel();
-        return p;
+        return new JPanel();
     }
 
     public JComponent createMiddlePanel() {
@@ -79,9 +74,6 @@ public class SearchByDatePane extends BasicPane {
         cookieNameList.addListSelectionListener(new CookieSelectionListener());
         JScrollPane p1 = new JScrollPane(cookieNameList);
         p.add(p1);
-
-        JCheckBox block = new JCheckBox("Block the chosen cookie");
-        block.addItemListener(new BlockItemListener());
 
         JPanel date = new JPanel();
         date.setLayout(new GridLayout(2, 2)); //ViewportLayout()??
@@ -126,7 +118,7 @@ public class SearchByDatePane extends BasicPane {
         cookieNameList.setModel(cookieListModel);
     }
 
-    public void clearLists() {
+    private void clearLists() {
         clearMessage();
         palletResultListModel.removeAllElements();
     }
@@ -134,7 +126,7 @@ public class SearchByDatePane extends BasicPane {
     /**
      * A class that listens for clicks in the cookie list.
      */
-    class CookieSelectionListener implements ListSelectionListener {
+    private class CookieSelectionListener implements ListSelectionListener {
         /**
          * Called when the user selects a cookie in the name list. Fetches
          * performance dates from the database and displays them in the date
@@ -171,7 +163,7 @@ public class SearchByDatePane extends BasicPane {
                 return;
             }
             String cookieName = cookieNameList.getSelectedValue();
-            ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, fromDate, toDate, false);
+            ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, fromDate, toDate);
             System.out.println(pallet.isEmpty());
             if (!pallet.isEmpty()) {
                 for (String p : pallet) {
@@ -183,19 +175,6 @@ public class SearchByDatePane extends BasicPane {
         }
     }
 
-    private class BlockItemListener implements ItemListener {
-
-        @Override
-        public void itemStateChanged(ItemEvent e) {
-            int state = e.getStateChange();
-            if (state == ItemEvent.SELECTED) {
-                blockcheck = true;
-            } else if (state == ItemEvent.DESELECTED) {
-                blockcheck = false;
-            }
-        }
-
-    }
 }
 
 

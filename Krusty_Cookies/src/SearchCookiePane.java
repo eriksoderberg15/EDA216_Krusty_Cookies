@@ -14,10 +14,6 @@ import java.util.ArrayList;
 public class SearchCookiePane extends BasicPane {
     private static final long serialVersionUID = 1;
 
-    /**
-     * A label to show a cookielist.
-     */
-    private JLabel cookieNameLabel;
 
     /**
      * The list model for the cookiename list.
@@ -31,10 +27,8 @@ public class SearchCookiePane extends BasicPane {
 
     private boolean blockcheck = false;
 
-    private static String COOKIEPANEL = "Search by cookies";
     private DefaultListModel<String> palletResultListModel;
     private JList<String> palletResultList;
-    private JComboBox<String> cookieChoice;
 
     public SearchCookiePane(Database db) {
         super(db);
@@ -105,7 +99,7 @@ public class SearchCookiePane extends BasicPane {
         cookieNameList.setModel(cookieListModel);
     }
 
-    public void clearLists() {
+    private void clearLists() {
         clearMessage();
         palletResultListModel.removeAllElements();
     }
@@ -113,7 +107,7 @@ public class SearchCookiePane extends BasicPane {
     /**
      * A class that listens for clicks in the cookie list.
      */
-    class CookieSelectionListener implements ListSelectionListener {
+    private class CookieSelectionListener implements ListSelectionListener {
         /**
          * Called when the user selects a cookie in the name list. Fetches
          * performance dates from the database and displays them in the date
@@ -154,20 +148,6 @@ public class SearchCookiePane extends BasicPane {
                 displayMessage("Pallets for " + cookieName + " is displayed");
                 palletResultList.setModel(palletResultListModel);
             }
-
-
-//            if(!(cookieChoice.getSelectedIndex() == 0)){
-//                String cookie = cookieChoice.getSelectedItem().toString();
-//               ArrayList<String> palletList = db.findPalletsContainingCookieList(cookie);
-//                for(String pallet : palletList){
-//                    palletResultListModel.addElement(pallet);
-//                }
-//                displayMessage("The list is displaying all pallets for cookie: "+ cookie);
-//                palletResultList.setModel(palletResultListModel);
-//            }else{
-//                displayMessage("Choose a cookie and search again");
-//                return;
-//            }
         }
     }
 

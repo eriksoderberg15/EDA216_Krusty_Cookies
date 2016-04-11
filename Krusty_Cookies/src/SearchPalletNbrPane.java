@@ -1,10 +1,7 @@
 import javax.swing.*;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 
 /**
  * Created by christineboghammar on 10/04/16.
@@ -19,7 +16,7 @@ public class SearchPalletNbrPane extends BasicPane {
     /**
      * The text fields where the Pallet number is written.
      */
-     JTextField input;
+    private JTextField input;
     /**
      * Create the Produce Pallets pane.
      *
@@ -104,7 +101,7 @@ public class SearchPalletNbrPane extends BasicPane {
     /**
      * A class that listens for Search button clicks.
      */
-    class ActionHandler implements ActionListener {
+    private class ActionHandler implements ActionListener {
         /**
          * Called when the user clicks the produce pallet button. One pallet is
          * produced for the chosen cookie.
