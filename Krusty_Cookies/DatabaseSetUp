@@ -1,4 +1,3 @@
-
 set foreign_key_checks = 0;
 
 drop table if exists Ingredients;
@@ -31,7 +30,6 @@ create table Cookies (
   primary key(cookieName)
 );
 
-
 create table Customers (
   customerId integer auto_increment,
   address varchar(30) not null,
@@ -41,9 +39,9 @@ create table Customers (
 
 create table Orders  (
   orderId integer auto_increment,
-  nbrPallet integer not null,
   orderDate date not null,
   customerId integer not null,
+  costumerAdress VARCHAR(30) not null,
   primary key(orderId),
   foreign key(customerId) references Customers(customerId)
 );
@@ -54,7 +52,7 @@ create table Pallets (
   prodDate date not null,
   location varchar (30) DEFAULT 'Freezer',
   isBlocked varchar(10) DEFAULT 'false',
-  orderId integer not null,
+  orderId integer,
   primary key(palletNbr),
   foreign key(cookieName) references Cookies(cookieName),
   foreign key(orderId) references Orders(orderId)
@@ -143,3 +141,11 @@ insert into Customers values(customerId,'Trelleborg','Kalaskakor AB');
 insert into Customers values(customerId,'Kristianstad','Partykakor AB');
 insert into Customers values(customerId,'Hässleholm','Gästkakor AB');
 insert into Customers values(customerId,'Perstorp','Skånekakor AB');
+
+
+insert into Orders values
+    (orderId, "2016-01-08", "Ystad", "Bjudkakor AB"),
+    (orderId, "2016-02-29", "Helsingborg", "Finkakor AB"),
+    (orderId, "2016-03-04", "Hässleholm", "Gästkakor AB");
+
+
