@@ -10,11 +10,6 @@ public class Main {
 		Database db = new Database();
 		new ProductionGUI(db);
 		
-		/*
-		 * 1. Create database object
-		 * 2. Set up connection
-		 * 3. Start GUI
-		 */
 	}
 
 }
