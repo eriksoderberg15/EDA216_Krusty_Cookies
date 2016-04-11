@@ -41,7 +41,6 @@ public class SearchByDatePane extends BasicPane {
 
     private DefaultListModel<String> palletResultListModel;
     private JList<String> palletResultList;
-    private JComboBox<String> cookieChoice;
 
     public SearchByDatePane(Database db) {
         super(db);
@@ -151,7 +150,6 @@ public class SearchByDatePane extends BasicPane {
         }
     }
 
-
     /**
      * Actionhandler listens to Search button..
      */
@@ -176,20 +174,6 @@ public class SearchByDatePane extends BasicPane {
                 displayMessage("Pallets for " + cookieName + " is displayed");
                 palletResultList.setModel(palletResultListModel);
             }
-
-
-//            if(!(cookieChoice.getSelectedIndex() == 0)){
-//                String cookie = cookieChoice.getSelectedItem().toString();
-//               ArrayList<String> palletList = db.findPalletsContainingCookieList(cookie);
-//                for(String pallet : palletList){
-//                    palletResultListModel.addElement(pallet);
-//                }
-//                displayMessage("The list is displaying all pallets for cookie: "+ cookie);
-//                palletResultList.setModel(palletResultListModel);
-//            }else{
-//                displayMessage("Choose a cookie and search again");
-//                return;
-//            }
         }
     }
 

@@ -69,15 +69,15 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchByDatePane.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SearchByDatePane.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/SearchByDatePane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
+            <state relative-caret-position="198">
+              <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1134#1135#0" expanded="true" />
-                <element signature="e#1159#1160#0" expanded="true" />
+                <element signature="e#1090#1091#0" expanded="true" />
+                <element signature="e#1115#1116#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -103,7 +103,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProducePane.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProducePane.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ProducePane.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="1800">
@@ -191,8 +191,8 @@
         <option value="$PROJECT_DIR$/src/ProductionGUI.java" />
         <option value="$PROJECT_DIR$/src/Database.java" />
         <option value="$PROJECT_DIR$/DatabaseSetUp" />
-        <option value="$PROJECT_DIR$/src/SearchByDatePane.java" />
         <option value="$PROJECT_DIR$/src/ProducePane.java" />
+        <option value="$PROJECT_DIR$/src/SearchByDatePane.java" />
       </list>
     </option>
   </component>
@@ -722,12 +722,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1460283930983</updated>
-      <workItem from="1460283932266" duration="44009000" />
+      <workItem from="1460283932266" duration="44493000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44009000" />
+    <option name="totallyTimeSpent" value="44493000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="60" y="51" width="1172" height="762" extended-state="0" />
@@ -921,24 +921,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchByDatePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="16" column="7" selection-start-line="16" selection-start-column="7" selection-end-line="16" selection-end-column="7" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1134#1135#0" expanded="true" />
-            <element signature="e#1159#1160#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/ProducePane.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1800">
           <caret line="122" column="36" selection-start-line="122" selection-start-column="36" selection-end-line="122" selection-end-column="36" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchByDatePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="198">
+          <caret line="150" column="5" selection-start-line="150" selection-start-column="5" selection-end-line="150" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1090#1091#0" expanded="true" />
+            <element signature="e#1115#1116#0" expanded="true" />
           </folding>
         </state>
       </provider>
