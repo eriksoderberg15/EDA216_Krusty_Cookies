@@ -103,7 +103,7 @@ public class Database {
 			//Om det går: skapa då palletten
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			String date = df.format(new Date());
-			String createPallet = "INSERT INTO Pallets(cookieName, prodDate, location, isBlocked) values(?,?,?,?)";
+			String createPallet = "INSERT INTO Pallets(cookieName, prodDate, orderId) values(?,?,?)";
 			PreparedStatement ps = null;
 			try {
 				conn.setAutoCommit(false);
@@ -111,11 +111,12 @@ public class Database {
 				ps = conn.prepareStatement(createPallet);	
 				System.out.println("precis innan setstringarna");
 				
-			
+				//insert into pallets (cookieName, prodDate, orderId) values('Nut ring', '2016-03-13', '4');
+				
 				ps.setString(1, cookieName);	//Cookie namn
 				ps.setString(2, date);	//pallet nummer
-				ps.setString(3, "location");	//datum
-				ps.setString(4, "false");	//tid
+				ps.setInt(3, 3);	//slänger in för order 3
+				
 				
 				System.out.println("precis efter setstringarna");
 				
@@ -267,7 +268,7 @@ public class Database {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-
+				
 				tempPalletInfo.add(rs.getString("cookieName"));
 				tempPalletInfo.add(rs.getString("prodDate"));
 				tempPalletInfo.add(rs.getString("location"));
