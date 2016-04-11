@@ -167,7 +167,7 @@ public class SearchByDatePane extends BasicPane {
                 displayMessage("Type in a start date with format (yyyy-mm-dd)!");
                 return;
             }if(fromInput.equals("")){
-                displayMessage("Type in an end date with format (yyyy-mm-dd)!")
+                displayMessage("Type in an end date with format (yyyy-mm-dd)!");
                 return;
             }
             String cookieName = cookieNameList.getSelectedValue();
