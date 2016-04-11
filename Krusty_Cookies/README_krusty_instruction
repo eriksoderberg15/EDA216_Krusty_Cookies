@@ -1,0 +1,14 @@
+README:
+
+The following text contains information on how to fully test the database program Krusty.
+
+Uppon dubbelclicking on the runnable .jar file Krusty.jar the GUI for the program opens up.
+
+In the first pane, the "Produce Pallets" pane, one should click on a cookie name on the left side and after this click on the button "Produce Pallet" and a pallet containing that cookie type will be produced, and the fields "cookie" and "Date" will be filled to confirm that the production was succesfull.
+
+In the "Search Cookie Pallets" the user can do two things. Firstly one can simply search for palets containing the cookie type clicked on in the left field. This is done by first clicking on the cookie name in the left field and the clicking on the button "search". This will give detailed information about all pallets containing that cookie in the right information field. Furthermore the user can click on a cookie name and also click on the box "Block the choosen cookie" before finally clicking the button "search". This will first block all pallet containing the cookie type clicked and then show all those pallets in the right field of the GUI.
+
+In the pane "Search pallet number" one can find detailed pallet information by entering the pallet Id of the desired pallet in the left field under the text "Enter pallet number below:" the query is done by lastly clicking on the "search" button.
+
+In the pane "Search by date Pallets" the user can find all pallets for a cookie in a specified interval for when they where produced. Initially one clicks on which cookie type is desired to find then enters a start and end intervall on the form "yyyy-mm-dd" and then clicks search. This will return all pallets containing the cookie, and where produced somewhere in between the interval just entered in the GUI.
+
