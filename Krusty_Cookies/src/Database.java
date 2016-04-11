@@ -286,12 +286,12 @@ public class Database {
 	}
 
 	public HashMap<String, ArrayList<String>> blockAllPallets(String cookieType){
-		String blockPallets = "UPDATE Pallets SET isBlocked = true where isBlocked = false and cookieName = ?";
+		String blockPallets = "UPDATE Pallets SET isBlocked = 'true' where isBlocked = 'false' and cookieName = ?";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(blockPallets);
 			ps.setString(1, cookieType);
-			ps.executeQuery();
+			ps.executeUpdate();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
