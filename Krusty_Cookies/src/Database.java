@@ -99,7 +99,7 @@ public class Database {
 	 */
 	public ArrayList<String> createPallet(String cookieName){
 		ArrayList<String> palletInfo = new ArrayList<String>();
-		
+
 		if(updateStorage(cookieName)){
 			//Om det går: skapa då palletten
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -110,13 +110,13 @@ public class Database {
 				conn.setAutoCommit(false);
 				ps = conn.prepareStatement(createPallet);	
 				System.out.println("precis innan setstringarna");
-				
+
 				//insert into pallets (cookieName, prodDate, orderId) values('Nut ring', '2016-03-13', '4');
-				
+
 				ps.setString(1, cookieName);	//Cookie namn
 				ps.setString(2, date);	//pallet nummer
 				ps.setInt(3, 3);	//slänger in för order 3
-					
+
 				System.out.println("precis efter setstringarna");
 				ps.executeUpdate();
 				System.out.println("direkt efter execute");
@@ -173,7 +173,7 @@ public class Database {
 			ps = conn.prepareStatement(sqlFetchRecipe);
 			ps.setString(1, cookieTypeMade);
 			ResultSet rs = ps.executeQuery();
-			
+
 			while(rs.next()){
 				String ingredientName= rs.getString("ingredientName");
 				String amountString = rs.getString("amount");
@@ -236,7 +236,7 @@ public class Database {
 	public int readStockAmount(String ingredient){		//method that reads the integer stockamount of an ingredient
 		String sqlIngrStockAmount = "SELECT stockAmount FROM Ingredients where ingredientName = ?";
 		PreparedStatement prepStmt = null;
-		
+
 		int stockAmount = 0;
 		try{
 			System.out.println("inne i readStockAmount för ingrediensen: " + ingredient);
@@ -246,7 +246,7 @@ public class Database {
 			ResultSet res = prepStmt.executeQuery();
 			res.next();
 			stockAmount = res.getInt("stockAmount");
-			
+
 			System.out.println("ingredientAmount: " + stockAmount);			
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -270,7 +270,7 @@ public class Database {
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-				
+
 				tempPalletInfo.add(rs.getString("cookieName"));
 				tempPalletInfo.add(rs.getString("prodDate"));
 				tempPalletInfo.add(rs.getString("location"));
@@ -373,15 +373,15 @@ public class Database {
 
 			ResultSet rs = ps.executeQuery();
 			rs.next();
-				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-				sb.append(tempKey + " | ");
-				sb.append(rs.getString("cookieName") + " | ");
-				sb.append(rs.getString("prodDate") + " | ");
-				sb.append(rs.getString("location") + " | ");
-				String blocked = rs.getString("isBlocked");
-				if(blocked.equals("true"))
-					sb.append("Blocked");
-				palletInfo = sb.toString();
+			String tempKey = Integer.toString(rs.getInt("palletNbr"));
+			sb.append(tempKey + " | ");
+			sb.append(rs.getString("cookieName") + " | ");
+			sb.append(rs.getString("prodDate") + " | ");
+			sb.append(rs.getString("location") + " | ");
+			String blocked = rs.getString("isBlocked");
+			if(blocked.equals("true"))
+				sb.append("Blocked");
+			palletInfo = sb.toString();
 
 		}catch(SQLException e){
 			e.printStackTrace();
@@ -398,13 +398,50 @@ public class Database {
 		return temp;
 	}
 
-	public void palletInfoForIntervall(String cookieType, String dateStart, String dateEnd, boolean shouldBlock){
+	public ArrayList<String> palletInfoForIntervall(String cookieType, String dateStart, String dateEnd, boolean shouldBlock){
 		//antingen kommer man bara vilja displaya pallets för det givna intervallet, eller så kommer man ha velat blocka de först 
-		//och sedan displaya. 
-		String blockPallets = "UPDATE Pallets SET isBlocked = true where isBlocked = false and cookieName = ? and prodDate >= ? and prodDate <= ?";
-		if(shouldBlock){
+		//och sedan displaya.
+		
+		System.out.println("metoden intervall anropades");
+		ArrayList<String> palletInfoForInterval = new ArrayList<String>();
 
+		String showPalletsForIntervall = "SELECT * FROM Pallets where cookieName = ? and prodDate >= ? and prodDate <= ?";
+		PreparedStatement ps = null;
+		try{
+			System.out.println("metoden intervall anropades: komin i try");
+
+				System.out.println("metoden intervall anropades: komin i inte block");
+				ps = conn.prepareStatement(showPalletsForIntervall);
+				ps.setString(1, cookieType);
+				ps.setString(2, dateStart);
+				ps.setString(3, dateEnd);
+				
+				ResultSet rs = ps.executeQuery();
+				while(rs.next()){
+					System.out.println("metoden intervall anropades: komin i vajl");
+
+					StringBuilder sb = new StringBuilder();
+					String tempKey = Integer.toString(rs.getInt("palletNbr"));
+					sb.append(tempKey + " | ");
+					sb.append(rs.getString("cookieName") + " | ");
+					sb.append(rs.getString("prodDate") + " | ");
+					sb.append(rs.getString("location") + " | ");
+					String blocked = rs.getString("isBlocked");	
+					if(blocked.equals("true")) {
+						sb.append("Blocked");
+					}
+					String pallet = sb.toString();
+					System.out.println(pallet);
+					palletInfoForInterval.add(pallet);
+				}	
+			}catch(SQLException e){
+			e.printStackTrace();
 		}
+		System.out.println(palletInfoForInterval.size());
+		return palletInfoForInterval;
+}
+
+		
 
 		//		public void searchByDate(String startDateFormatted, String endDateFormatted, String chosenCookie, String chosenIngr,
 		//				String onlyBlocked, DefaultListModel<Pallet> cookieListModel) {
@@ -418,7 +455,6 @@ public class Database {
 		//			execPrepPalSearchQuery(q, cookieListModel, input, input.size());
 		//		}
 
-	}
 
 	public ArrayList<String> findPalletsContainingCookieList(String cookieToFind){
 		ArrayList<String> palletList = new ArrayList<String>();
