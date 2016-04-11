@@ -99,6 +99,7 @@ public class Database {
 	 */
 	public ArrayList<String> createPallet(String cookieName){
 		ArrayList<String> palletInfo = new ArrayList<String>();
+		
 		if(updateStorage(cookieName)){
 			//Om det går: skapa då palletten
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
@@ -107,7 +108,6 @@ public class Database {
 			PreparedStatement ps = null;
 			try {
 				conn.setAutoCommit(false);
-
 				ps = conn.prepareStatement(createPallet);	
 				System.out.println("precis innan setstringarna");
 				
@@ -116,19 +116,21 @@ public class Database {
 				ps.setString(1, cookieName);	//Cookie namn
 				ps.setString(2, date);	//pallet nummer
 				ps.setInt(3, 3);	//slänger in för order 3
-				
-				
+					
 				System.out.println("precis efter setstringarna");
-				
 				ps.executeUpdate();
-				System.out.println("precis efter executeUpdate");
-
+				System.out.println("direkt efter execute");
+				palletInfo.add(cookieName);
+				palletInfo.add(date);
+				System.out.println("direkt efter det att jag lagt till i arraylisten");
 			} catch (SQLException e) {
+				System.out.println("i en catch");
 				e.printStackTrace();
 			}finally {
 				try {
 					ps.close();
 				} catch (SQLException e) {
+					System.out.println("det verkar som det inte gickatt stäng ps");
 					e.printStackTrace();
 				}
 			}
