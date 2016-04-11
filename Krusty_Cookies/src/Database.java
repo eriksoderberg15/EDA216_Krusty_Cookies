@@ -90,8 +90,6 @@ public class Database {
 
 	}
 
-	//Allt visas som strängar i GUIt, därav returnerar vi här en lista med strängar
-
 	/**
 	 * 
 	 * @param cookieName
@@ -101,7 +99,6 @@ public class Database {
 		ArrayList<String> palletInfo = new ArrayList<String>();
 
 		if(updateStorage(cookieName)){
-			//Om det går: skapa då palletten
 			DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
 			String date = df.format(new Date());
 			String createPallet = "INSERT INTO Pallets(cookieName, prodDate, orderId) values(?,?,?)";
@@ -109,62 +106,32 @@ public class Database {
 			try {
 				conn.setAutoCommit(false);
 				ps = conn.prepareStatement(createPallet);	
-				System.out.println("precis innan setstringarna");
 
-				//insert into pallets (cookieName, prodDate, orderId) values('Nut ring', '2016-03-13', '4');
+				ps.setString(1, cookieName);	
+				ps.setString(2, date);	
+				ps.setInt(3, 3);	
 
-				ps.setString(1, cookieName);	//Cookie namn
-				ps.setString(2, date);	//pallet nummer
-				ps.setInt(3, 3);	//slänger in för order 3
-
-				System.out.println("precis efter setstringarna");
 				ps.executeUpdate();
-				System.out.println("direkt efter execute");
 				palletInfo.add(cookieName);
 				palletInfo.add(date);
-				System.out.println("direkt efter det att jag lagt till i arraylisten");
 			} catch (SQLException e) {
-				System.out.println("i en catch");
 				e.printStackTrace();
 			}finally {
 				try {
 					ps.close();
 				} catch (SQLException e) {
-					System.out.println("det verkar som det inte gickatt stäng ps");
 					e.printStackTrace();
 				}
 			}
 			return palletInfo;
 		}else{
-			System.out.println("Metoden createPallet failade för metoden updateStorage returnerade false");
 			return palletInfo; 
 		}
 	}
-	//	public int nbrOfPalletsInInterval(String start, String end, String cookieName){
-	//		PreparedStatement prepStmt = null;
-	//		try{
-	//			String sql = "SELECT count(*) FROM Pallets WHERE prodDate > start and prodDate < end"
-	//					+ "  and cName = cookieName";
-	//			prepStmt = conn.prepareStatement(sql);
-	//			
-	//			ResultSet rs = prepStmt.executeQuery();
-	//			if(rs.next()){
-	//				String userN= rs.getString("userName");
-	//				CurrentUser.instance().loginAs(userN); 	//Vad var current user nu igen?
-	//				System.out.println(userN + "is logged in");
-	//				return 0;
-	//			}else
-	//				return 0;
-	//		}catch(SQLException e){
-	//			System.out.println("Det gick inte att kolla om användaren existerar:" + " "); //English?
-	//			e.printStackTrace();
-	//			return 0;
-	//		}
-	//	}
-	public boolean updateStorage(String cookieTypeMade){		
-		HashMap<String, Integer> map = new HashMap<String, Integer>();	//map quantity to an ingredient
 
-		//Läs in receptet för kakjäveln
+	public boolean updateStorage(String cookieTypeMade){		
+		HashMap<String, Integer> map = new HashMap<String, Integer>();	
+
 		PreparedStatement ps = null;
 		String sqlFetchRecipe = "SELECT * FROM IngredientsInCookies where cookieName = ?";	
 
@@ -187,25 +154,19 @@ public class Database {
 			//För varje ingrediens i receptet går vi in i råvarulagret och subtraherar ner värdet för varje ingrediens
 			for(String tempIngName: map.keySet()) {
 				int amountNeeded = map.get(tempIngName); //Mängd som behövs av ingrediensen
-
-				System.out.println("amountNeeded i updateStorage: " + amountNeeded);
 				int stockAmount = readStockAmount(tempIngName);
-				System.out.println("inne i updatestorage metoden och stocken är: " + stockAmount);
-				System.out.println("inne i updatestorage metoden och amountNeeded är: " + amountNeeded);
+				
 				if(stockAmount<amountNeeded){
 					//I något av ingredienserna fanns det inte tillräckligt
-					System.out.println("Det fanns inte tillräckligt med ingredienser i råvarulagret för att baka kakan");
 					conn.rollback();
 					return false;
 				}else{
 					subtractStock(amountNeeded, tempIngName);
-					System.out.println("vi kom in i subtract metoden och klarade oss ut");
 				}
 			}
 		}catch(SQLException e){
 			try {
 				conn.rollback();
-				System.out.println("rollback skit inträffade");
 				return false;
 			} catch (SQLException e1) {
 				e1.printStackTrace();
@@ -218,7 +179,7 @@ public class Database {
 				e.printStackTrace();
 			}
 		}
-		return true;	//Om vi inte har kommit in i if:en för stockAmount<amountNeeded så har ju allt gått prima
+		return true;
 	}
 
 	public void subtractStock(int amountToSubtract, String ingName){
@@ -239,25 +200,17 @@ public class Database {
 
 		int stockAmount = 0;
 		try{
-			System.out.println("inne i readStockAmount för ingrediensen: " + ingredient);
 			prepStmt = conn.prepareStatement(sqlIngrStockAmount);
 			prepStmt.setString(1, ingredient);	//
 
 			ResultSet res = prepStmt.executeQuery();
 			res.next();
 			stockAmount = res.getInt("stockAmount");
-
-			System.out.println("ingredientAmount: " + stockAmount);			
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		System.out.println("precis innan syso: " + stockAmount);
 		return stockAmount;
 	}
-
-	/*
-	 * Search-metoderna
-	 */
 
 	public HashMap<String, ArrayList<String>>findPalletsContainingCookie(String cookieToFind){
 		ArrayList<String> tempPalletInfo = new ArrayList<String>();//1: content, 2: prodDate, 3: location, 4: isBlocked
@@ -280,7 +233,6 @@ public class Database {
 			}	
 		}catch(SQLException e){
 			e.printStackTrace();
-			System.out.println("troligtvis fanns det inga pallets inglagda i systemet därav nullpointer typ");
 		}
 		return map;
 	}
@@ -298,7 +250,6 @@ public class Database {
 		return findBlockedPallets(cookieType);
 	}
 
-	//1: content, 2: prodDate, 3: location, 4: isBlocked
 	public HashMap<String, ArrayList<String>> findBlockedPallets(String cookieName){
 		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> tempPalletInfo = new ArrayList<String>(); 
@@ -331,7 +282,6 @@ public class Database {
 		try{
 			ps = conn.prepareStatement(findBlocked);
 			ResultSet rs = ps.executeQuery();
-
 			while(rs.next()){
 				blockedPallets.add(rs.getInt("palletNbr")); //Fel?
 			}
@@ -341,25 +291,6 @@ public class Database {
 		return blockedPallets;
 	}
 
-	public int storageAmountLeft(String ingredientName){
-		return 0;
-	}
-	//Här vill få returnerat hur MYCKET som levererades samt NÄR
-	public String lastDelivery (String ingredientName) {
-		return "tillsvidare";
-	}
-
-	public String displayAllRecipees(){
-		return "tillsvidare";
-	}
-
-	/*
-	 * Tänker mig att vi har en vektor som input.
-	 * Plats 1 anger recept namn, därefter har vi ingredientsnamn1, mängd1, ingredientnamn2, mängd2, etc...??
-	 */
-	public boolean addRecipee(ArrayList<String> newRecipee){
-		return true;
-	}
 	public String getPalletInfo(int palletId){
 		StringBuilder sb = new StringBuilder();
 		String palletInfo = "";
@@ -388,73 +319,37 @@ public class Database {
 		}
 		return palletInfo;
 	}
-	//Hitta alla pallar som bär på kaktypen cookieName
-	public ArrayList<Integer> palletsContaining(String cookieName){
-		ArrayList<Integer> temp = new ArrayList<Integer>();
-		return temp;
-	}
-	public ArrayList<Integer> palletsProducedInInterval(String start, String end){
-		ArrayList<Integer> temp = new ArrayList<Integer>();
-		return temp;
-	}
-
-	public ArrayList<String> palletInfoForIntervall(String cookieType, String dateStart, String dateEnd, boolean shouldBlock){
-		//antingen kommer man bara vilja displaya pallets för det givna intervallet, eller så kommer man ha velat blocka de först 
-		//och sedan displaya.
-		
-		System.out.println("metoden intervall anropades");
+	
+	public ArrayList<String> palletInfoForIntervall(String cookieType, String dateStart, String dateEnd){
 		ArrayList<String> palletInfoForInterval = new ArrayList<String>();
-
 		String showPalletsForIntervall = "SELECT * FROM Pallets where cookieName = ? and prodDate >= ? and prodDate <= ?";
 		PreparedStatement ps = null;
 		try{
-			System.out.println("metoden intervall anropades: komin i try");
+			ps = conn.prepareStatement(showPalletsForIntervall);
+			ps.setString(1, cookieType);
+			ps.setString(2, dateStart);
+			ps.setString(3, dateEnd);
 
-				System.out.println("metoden intervall anropades: komin i inte block");
-				ps = conn.prepareStatement(showPalletsForIntervall);
-				ps.setString(1, cookieType);
-				ps.setString(2, dateStart);
-				ps.setString(3, dateEnd);
-				
-				ResultSet rs = ps.executeQuery();
-				while(rs.next()){
-					System.out.println("metoden intervall anropades: komin i vajl");
-
-					StringBuilder sb = new StringBuilder();
-					String tempKey = Integer.toString(rs.getInt("palletNbr"));
-					sb.append(tempKey + " | ");
-					sb.append(rs.getString("cookieName") + " | ");
-					sb.append(rs.getString("prodDate") + " | ");
-					sb.append(rs.getString("location") + " | ");
-					String blocked = rs.getString("isBlocked");	
-					if(blocked.equals("true")) {
-						sb.append("Blocked");
-					}
-					String pallet = sb.toString();
-					System.out.println(pallet);
-					palletInfoForInterval.add(pallet);
-				}	
-			}catch(SQLException e){
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()){
+				StringBuilder sb = new StringBuilder();
+				String tempKey = Integer.toString(rs.getInt("palletNbr"));
+				sb.append(tempKey + " | ");
+				sb.append(rs.getString("cookieName") + " | ");
+				sb.append(rs.getString("prodDate") + " | ");
+				sb.append(rs.getString("location") + " | ");
+				String blocked = rs.getString("isBlocked");	
+				if(blocked.equals("true")) {
+					sb.append("Blocked");
+				}
+				String pallet = sb.toString();
+				palletInfoForInterval.add(pallet);
+			}	
+		}catch(SQLException e){
 			e.printStackTrace();
 		}
-		System.out.println(palletInfoForInterval.size());
 		return palletInfoForInterval;
-}
-
-		
-
-		//		public void searchByDate(String startDateFormatted, String endDateFormatted, String chosenCookie, String chosenIngr,
-		//				String onlyBlocked, DefaultListModel<Pallet> cookieListModel) {
-		//			ArrayList<String> input = new ArrayList<String>();
-		//			input.add(startDateFormatted + " 00:00:00");
-		//			input.add(endDateFormatted + " 23:59:59");
-		//			input.add(chosenCookie);
-		//			input.add(chosenIngr);
-		//			String q = "SELECT * FROM PALLET WHERE bakedate >= ? AND bakedate <=? AND cookieName LIKE ? AND cookieName IN (SELECT cookieName from recipe WHERE ingrname LIKE ?) "
-		//					+ onlyBlocked + " ORDER BY bakedate;";
-		//			execPrepPalSearchQuery(q, cookieListModel, input, input.size());
-		//		}
-
+	}
 
 	public ArrayList<String> findPalletsContainingCookieList(String cookieToFind){
 		ArrayList<String> palletList = new ArrayList<String>();
@@ -476,12 +371,10 @@ public class Database {
 					sb.append("Blocked");
 				}
 				String pallet = sb.toString();
-				System.out.println(pallet);
 				palletList.add(pallet);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();
-			System.out.println("något hände med databasen");
 		}
 		return palletList;
 	}
