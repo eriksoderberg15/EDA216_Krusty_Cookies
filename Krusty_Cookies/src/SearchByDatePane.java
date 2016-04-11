@@ -85,11 +85,11 @@ public class SearchByDatePane extends BasicPane {
 
         JPanel date = new JPanel();
         date.setLayout(new GridLayout(2, 2)); //ViewportLayout()??
-        JTextField from = new JTextField("From date (yyyy-mm-dd):");
+        JTextField from = new JTextField("Start date (yyyy-mm-dd):");
         from.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         from.setEditable(false);
         fromInput = new JTextField("", 10);
-        JTextField to = new JTextField("To date (yyyy-mm-dd):");
+        JTextField to = new JTextField("End date (yyyy-mm-dd):");
         to.setBorder(javax.swing.BorderFactory.createEmptyBorder());
         to.setEditable(false);
         toInput = new JTextField("", 10);

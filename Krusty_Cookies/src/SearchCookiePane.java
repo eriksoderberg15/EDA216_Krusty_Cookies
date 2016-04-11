@@ -89,6 +89,7 @@ public class SearchCookiePane extends BasicPane {
     public void entryActions() {
         clearMessage();
         fillNameList();
+        palletResultListModel.removeAllElements();
     }
 
     /**
