@@ -41,7 +41,6 @@ create table Orders  (
   orderId integer auto_increment,
   orderDate date not null,
   customerId integer not null,
-  costumerAdress VARCHAR(30) not null,
   primary key(orderId),
   foreign key(customerId) references Customers(customerId)
 );
@@ -142,9 +141,9 @@ insert into Customers values(customerId,'Kristianstad','Partykakor AB');
 insert into Customers values(customerId,'Hässleholm','Gästkakor AB');
 insert into Customers values(customerId,'Perstorp','Skånekakor AB');
 
-insert into Orders values(orderId, "2016-01-08", 4, "Ystad");
-insert into Orders values(orderId, "2016-02-29", 1, "Helsingborg");
-insert into Orders values(orderId, "2016-03-04", 7, "Hässleholm");
+insert into Orders values(orderId, "2016-01-08", 4);
+insert into Orders values(orderId, "2016-02-29", 1);
+insert into Orders values(orderId, "2016-03-04", 7);
 
 
 

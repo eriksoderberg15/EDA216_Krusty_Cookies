@@ -167,11 +167,11 @@ public class SearchByDatePane extends BasicPane {
                 displayMessage("Type in a start date with format (yyyy-mm-dd)!");
                 return;
             }if(fromInput.equals("")){
-                displayMessage("Type in an end date with format (yyyy-mm-dd)!")
+                displayMessage("Type in an end date with format (yyyy-mm-dd)!");
                 return;
             }
             String cookieName = cookieNameList.getSelectedValue();
-            ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, toDate, fromDate, false);
+            ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, fromDate, toDate, false);
             System.out.println(pallet.isEmpty());
             if (!pallet.isEmpty()) {
                 for (String p : pallet) {
