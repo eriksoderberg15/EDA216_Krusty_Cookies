@@ -255,7 +255,7 @@ public class Database {
 		try{
 			ps = conn.prepareStatement(blockPallets);
 			ps.setString(1, cookieType);
-			ResultSet rs = ps.executeQuery();
+			ps.executeQuery();
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
@@ -324,8 +324,9 @@ public class Database {
 	public boolean addRecipee(ArrayList<String> newRecipee){
 		return true;
 	}
-	public ArrayList<String> getPalletInfo(int palletId){
-		ArrayList<String> palletInfo = new ArrayList<String>();
+	public String getPalletInfo(int palletId){
+		StringBuilder sb = new StringBuilder();
+		String palletInfo = "";
 		String getPalletInfo = "SELECT * FROM Pallets where palletNbr = ?";
 		
 		PreparedStatement ps = null;
@@ -335,19 +336,20 @@ public class Database {
 			ps.setInt(1, palletId);
 			
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
+			rs.next();
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-				
-				palletInfo.add(rs.getString("cookieName"));
-				palletInfo.add(rs.getString("prodDate"));
-				palletInfo.add(rs.getString("location"));
-				palletInfo.add(rs.getString("isBlocked"));
-				
-			}
+				sb.append(tempKey + " | ");
+				sb.append(rs.getString("cookieName") + " | ");
+				sb.append(rs.getString("prodDate") + " | ");
+				sb.append(rs.getString("location") + " | ");
+				String blocked = rs.getString("isBlocked");
+				if(blocked.equals("true"))
+					sb.append("Blocked");
+				palletInfo = sb.toString();
+
 		}catch(SQLException e){
 			e.printStackTrace();
 		}
-			
 		return palletInfo;
 	}
 	//Hitta alla pallar som bär på kaktypen cookieName
@@ -360,41 +362,28 @@ public class Database {
 		return temp;
 	}
 
-
-	public String[] toPalletArray(HashMap<String, ArrayList<String>> palletsContainingCookie) {
-		String[] palletList = new String[palletsContainingCookie.size()];
-		int index = 0;
-		String pallet;
-		for(String key : palletsContainingCookie.keySet()){
-			StringBuilder sb = new StringBuilder();
-			sb.append(key);
-			ArrayList<String> palletInfo = palletsContainingCookie.get(key);
-			for (int i =0; i<palletInfo.size(); i++){
-				sb.append(palletInfo.get(i));
-			}
-			palletList[index] = sb.toString();
-		}
-		return palletList;
-	}
 	public ArrayList<String> findPalletsContainingCookieList(String cookieToFind){
-		StringBuilder sb = new StringBuilder();
 		ArrayList<String> palletList = new ArrayList<String>();
-		String findPallets = "SELECT * FROM Pallets where cookieName = cookieToFind";
+		String findPallets = "SELECT * FROM Pallets where cookieName = ?";
 		PreparedStatement ps = null;
 		try{
 			ps = conn.prepareStatement(findPallets);
+			ps.setString(1, cookieToFind);
 			ResultSet rs = ps.executeQuery();
 			while(rs.next()){
+				StringBuilder sb = new StringBuilder();
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
 				sb.append(tempKey + " | ");
 				sb.append(rs.getString("cookieName") + " | ");
 				sb.append(rs.getString("prodDate") + " | ");
 				sb.append(rs.getString("location") + " | ");
 				String blocked = rs.getString("isBlocked");
-				if(blocked.equals(true)) {
+				if(blocked.equals("true")) {
 					sb.append("Blocked");
 				}
-				palletList.add(sb.toString());
+				String pallet = sb.toString();
+				System.out.println(pallet);
+				palletList.add(pallet);
 			}
 		}catch(SQLException e){
 			e.printStackTrace();

@@ -37,11 +37,11 @@ public class ProductionGUI {
         tabbedPane.addTab("Produce Pallets", null, producePane,
                 "for producing pallets of cookies");
 
-        SearchAllPane searchPane = new SearchAllPane(db);
-        tabbedPane.addTab("Search All Pallets", null, searchPane, "search for all produced pallets");
-
         SearchCookiePane searchCookiePane = new SearchCookiePane(db);
         tabbedPane.addTab("Search Cookie Pallets", null, searchCookiePane, "search for produced cookie pallets");
+
+        SearchPalletNbrPane searchPalletNbrPane = new SearchPalletNbrPane(db);
+        tabbedPane.addTab("Search Pallet Number", null, searchPalletNbrPane, "search for a specific pallet");
 
         SearchByDatePane searchByDatePane = new SearchByDatePane(db);
         tabbedPane.addTab("Search By Date Pallets", null, searchByDatePane, "search for produced pallets by date");
@@ -54,13 +54,14 @@ public class ProductionGUI {
         tabbedPane.addChangeListener(new ChangeHandler());
         frame.addWindowListener(new WindowHandler());
 
-        frame.setSize(600, 400);
+        frame.setSize(650, 400);
         frame.setVisible(true);
 
         producePane.displayMessage("Connecting to database ...");
 
         if (db.openConnection("db70", "tintinerik")) {
             producePane.displayMessage("Connected to database");
+            producePane.fillNameList();
             System.out.println("connected");
         } else {
             System.out.println("not connected");

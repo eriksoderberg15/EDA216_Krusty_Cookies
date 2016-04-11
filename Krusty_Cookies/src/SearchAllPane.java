@@ -107,9 +107,9 @@ public class SearchAllPane extends BasicPane {
         JScrollPane p2 = new JScrollPane(dateList);
 
         JPanel p = new JPanel();
-        p.setLayout(new GridLayout(1, 2));
+        p.setLayout(new GridLayout(1, 1));
         p.add(p1);
-        p.add(p2);
+//        p.add(p2);
         return p;
     }
 
@@ -119,30 +119,16 @@ public class SearchAllPane extends BasicPane {
      * @return The top panel.
      */
     public JComponent createTopPanel() {
-        String[] texts = new String[NBR_FIELDS];
-        texts[MOVIE_NAME] = "Movie";
-        texts[PERF_DATE] = "Date";
-        texts[THEATER_NAME] = "Plays at";
-        texts[FREE_SEATS] = "Free seats";
-
-        fields = new JTextField[NBR_FIELDS];
-        for (int i = 0; i < fields.length; i++) {
-            fields[i] = new JTextField(20);
-            fields[i].setEditable(false);
-        }
-
-        JPanel input = new InputPanel(texts, fields);
 
         JPanel p1 = new JPanel();
         p1.setLayout(new FlowLayout(FlowLayout.LEFT));
-        p1.add(new JLabel("Current user: "));
+        p1.add(new JLabel("Number of pallets: "));
         currentUserNameLabel = new JLabel("");
         p1.add(currentUserNameLabel);
 
         JPanel p = new JPanel();
         p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
         p.add(p1);
-        p.add(input);
         return p;
     }
 
@@ -152,12 +138,12 @@ public class SearchAllPane extends BasicPane {
      *
      * @return The bottom panel.
      */
-//    public JComponent createBottomPanel() {
-//        JButton[] buttons = new JButton[1];
-//        buttons[0] = new JButton("Book ticket");
-//        return new ButtonAndMessagePanel(buttons, messageLabel,
-//                new ActionHandler());
-//    }
+    public JComponent createBottomPanel() {
+        JButton[] buttons = new JButton[1];
+        buttons[0] = new JButton("Search");
+        return new ButtonAndMessagePanel(buttons, messageLabel,
+                new ActionHandler());
+    }
 
     /**
      * Perform the entry actions of this pane: clear all fields, fetch the movie
@@ -165,9 +151,9 @@ public class SearchAllPane extends BasicPane {
      */
     public void entryActions() {
         clearMessage();
-        currentUserNameLabel.setText(CurrentUser.instance().getCurrentUserId());
+//        currentUserNameLabel.setText(CurrentUser.instance().getCurrentUserId());
         fillNameList();
-        clearFields();
+
     }
 
     /**
@@ -200,10 +186,6 @@ public class SearchAllPane extends BasicPane {
     /**
      * Clear all text fields.
      */
-    private void clearFields() {
-        for (int i = 0; i < fields.length; i++) {
-            fields[i].setText("");
-        }
     }
 
     /**
@@ -229,34 +211,6 @@ public class SearchAllPane extends BasicPane {
         }
     }
 
-    /**
-     * A class that listens for clicks in the date list.
-     */
-    class DateSelectionListener implements ListSelectionListener {
-        /**
-         * Called when the user selects a name in the date list. Fetches
-         * performance data from the database and displays it in the text
-         * fields.
-         *
-         * @param e
-         *            The selected list item.
-         */
-        public void valueChanged(ListSelectionEvent e) {
-//            if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
-//                return;
-//            }
-//            String movieName = nameList.getSelectedValue();
-//            String date = dateList.getSelectedValue();
-//
-//            Map <String, ArrayList<String>> performances = db.getPerformances(movieName);
-//            ArrayList <String> pInfo = performances.get(date);
-//
-//            fields[0].setText(movieName); //Movie name
-//            fields[1].setText(date); // Date
-//            fields[2].setText(pInfo.get(0)); // Theater name
-//            fields[3].setText(pInfo.get(1)); // nr seats
-        }
-    }
 
     /**
      * A class that listens for button clicks.
@@ -274,29 +228,19 @@ public class SearchAllPane extends BasicPane {
 //            if (nameList.isSelectionEmpty() || dateList.isSelectionEmpty()) {
 //                return;
 //            }
-//            if (!CurrentUser.instance().isLoggedIn()) {
-//                displayMessage("Must login first");
-//                return;
+
 //            }
-//            String movieName = nameList.getSelectedValue();
-//            String date = dateList.getSelectedValue();
-//            String userName = CurrentUser.instance().getCurrentUserId();
+//            String palletNbr = nameList.getSelectedValue();
 //
 //            if(db.bookTicket(movieName, date, userName)) {
 //                System.out.println("Biljett-fan lyckades bokas");
 //                int resNbr = db.getReservationNbr(movieName, date, userName);
 //                if(resNbr != -1){
 //                    String resNbrString = Integer.toString(resNbr);
-//                    displayMessage("Booking number: " + resNbrString);
+//                    displayMessage("Showing the search result);
 //                }else{
-//                    displayMessage("Couldnt make reservation");
+//                    displayMessage("Search again");
 //
 //                }
-//
-//            } else {
-//                System.out.println("Biljett-fan lyckades INTE bokas");
-//                displayMessage("The reservation already exists");
-//            }
-        }
     }
 }

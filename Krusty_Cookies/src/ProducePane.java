@@ -161,7 +161,7 @@ public class ProducePane extends BasicPane {
         /**
          * Fetch cookie names from the database and display them in the name list.
          */
-        private void fillNameList() {
+        public void fillNameList() {
             cookieListModel.removeAllElements();
             ArrayList<String> cookies = db.showCreatableCookies();
 
