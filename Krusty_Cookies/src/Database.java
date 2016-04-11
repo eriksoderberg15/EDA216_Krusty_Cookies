@@ -52,17 +52,11 @@ public class Database {
 				conn.close();
 			}
 		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 		conn = null;
 	}
-	/**
-	 * Check if the connection to the database has been established
-	 * 
-	 * @return true if the connection has been established
-	 */
-	public boolean isConnected() {
-		return conn != null;
-	}
+
 	/**
 	 * Method giving available cookie
 	 * @return List of cookieNames
@@ -194,7 +188,7 @@ public class Database {
 			e.printStackTrace();
 		}
 	}
-	public int readStockAmount(String ingredient){		//method that reads the integer stockamount of an ingredient
+	private int readStockAmount(String ingredient){		//method that reads the integer stockamount of an ingredient
 		String sqlIngrStockAmount = "SELECT stockAmount FROM Ingredients where ingredientName = ?";
 		PreparedStatement prepStmt = null;
 
@@ -212,31 +206,6 @@ public class Database {
 		return stockAmount;
 	}
 
-	public HashMap<String, ArrayList<String>>findPalletsContainingCookie(String cookieToFind){
-		ArrayList<String> tempPalletInfo = new ArrayList<String>();//1: content, 2: prodDate, 3: location, 4: isBlocked
-		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();//Mappar palletId till all info för palleten
-
-		String findPallets = "SELECT * FROM Pallets where cookieName = cookieToFind";
-		PreparedStatement ps = null;
-		try{
-			ps = conn.prepareStatement(findPallets);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				String tempKey = Integer.toString(rs.getInt("palletNbr"));
-
-				tempPalletInfo.add(rs.getString("cookieName"));
-				tempPalletInfo.add(rs.getString("prodDate"));
-				tempPalletInfo.add(rs.getString("location"));
-				tempPalletInfo.add(rs.getString("isBlocked"));
-
-				map.put(tempKey, tempPalletInfo);
-			}	
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return map;
-	}
-
 	public HashMap<String, ArrayList<String>> blockAllPallets(String cookieType){
 		String blockPallets = "UPDATE Pallets SET isBlocked = 'true' where isBlocked = 'false' and cookieName = ?";
 		PreparedStatement ps = null;
@@ -250,7 +219,7 @@ public class Database {
 		return findBlockedPallets(cookieType);
 	}
 
-	public HashMap<String, ArrayList<String>> findBlockedPallets(String cookieName){
+	private HashMap<String, ArrayList<String>> findBlockedPallets(String cookieName){
 		HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
 		ArrayList<String> tempPalletInfo = new ArrayList<String>(); 
 		String findBlocked = "SELECT * FROM Pallets where isBlocked = true";
@@ -273,22 +242,6 @@ public class Database {
 			e.printStackTrace();
 		}
 		return map;
-	}
-
-	public ArrayList<Integer> findBlockedPallets(){
-		ArrayList<Integer> blockedPallets = new ArrayList<Integer>(); 
-		String findBlocked = "SELECT distinct palletNbr FROM Pallets where isBlocked = true";
-		PreparedStatement ps = null;
-		try{
-			ps = conn.prepareStatement(findBlocked);
-			ResultSet rs = ps.executeQuery();
-			while(rs.next()){
-				blockedPallets.add(rs.getInt("palletNbr")); //Fel?
-			}
-		}catch(SQLException e){
-			e.printStackTrace();
-		}
-		return blockedPallets;
 	}
 
 	public String getPalletInfo(int palletId){
@@ -363,9 +316,9 @@ public class Database {
 				StringBuilder sb = new StringBuilder();
 				String tempKey = Integer.toString(rs.getInt("palletNbr"));
 				sb.append(tempKey + " | ");
-				sb.append(rs.getString("cookieName") + " | ");
-				sb.append(rs.getString("prodDate") + " | ");
-				sb.append(rs.getString("location") + " | ");
+				sb.append(rs.getString("cookieName")).append(" | ");
+				sb.append(rs.getString("prodDate")).append(" | ");
+				sb.append(rs.getString("location")).append(" | ");
 				String blocked = rs.getString("isBlocked");
 				if(blocked.equals("true")) {
 					sb.append("Blocked");

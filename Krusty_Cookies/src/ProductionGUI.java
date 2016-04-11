@@ -62,9 +62,7 @@ public class ProductionGUI {
         if (db.openConnection("db70", "tintinerik")) {
             producePane.displayMessage("Connected to database");
             producePane.fillNameList();
-            System.out.println("connected");
         } else {
-            System.out.println("not connected");
             producePane.displayMessage("Could not connect to database, please try again");
         }
     }

@@ -4,8 +4,6 @@ import javax.swing.event.ListSelectionListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ItemEvent;
-import java.awt.event.ItemListener;
 import java.util.ArrayList;
 
 /**
@@ -139,7 +137,6 @@ public class SearchByDatePane extends BasicPane {
                 return;
             }
             clearMessage();
-//            String cookieName = cookieNameList.getSelectedValue();
         }
     }
 
@@ -164,7 +161,6 @@ public class SearchByDatePane extends BasicPane {
             }
             String cookieName = cookieNameList.getSelectedValue();
             ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, fromDate, toDate);
-            System.out.println(pallet.isEmpty());
             if (!pallet.isEmpty()) {
                 for (String p : pallet) {
                     palletResultListModel.addElement(p);

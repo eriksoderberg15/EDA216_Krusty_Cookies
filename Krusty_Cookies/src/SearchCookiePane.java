@@ -136,11 +136,9 @@ public class SearchCookiePane extends BasicPane {
             }
             String cookieName = cookieNameList.getSelectedValue();
             if(blockcheck){
-                System.out.println("BLOCK");
                 db.blockAllPallets(cookieName);
             }
             ArrayList<String> pallet = db.findPalletsContainingCookieList(cookieName);
-            System.out.println(pallet.isEmpty());
             if (!pallet.isEmpty()) {
                 for (String p : pallet) {
                     palletResultListModel.addElement(p);
