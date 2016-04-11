@@ -41,7 +41,6 @@ public class SearchByDatePane extends BasicPane {
 
     private DefaultListModel<String> palletResultListModel;
     private JList<String> palletResultList;
-    private JComboBox<String> cookieChoice;
 
     public SearchByDatePane(Database db) {
         super(db);
@@ -109,6 +108,9 @@ public class SearchByDatePane extends BasicPane {
     public void entryActions() {
         clearMessage();
         fillNameList();
+        fromInput.setText("");
+        toInput.setText("");
+        palletResultListModel.removeAllElements();
     }
 
     /**
@@ -145,12 +147,9 @@ public class SearchByDatePane extends BasicPane {
                 return;
             }
             clearMessage();
-            String cookieName = cookieNameList.getSelectedValue();
-            System.out.println("Vi har tryckt på cookie: " + cookieName);
-//            cookieNameLabel.setText(cookieName);
+//            String cookieName = cookieNameList.getSelectedValue();
         }
     }
-
 
     /**
      * Actionhandler listens to Search button..
@@ -162,12 +161,17 @@ public class SearchByDatePane extends BasicPane {
                 displayMessage("Please select a cookie!");
                 return;
             }
-            String cookieName = cookieNameList.getSelectedValue();
-            if (blockcheck) {
-                System.out.println("BLOCK");
-                db.blockAllPallets(cookieName);
+                String toDate = toInput.getText();
+                String fromDate = fromInput.getText();
+            if(toInput.equals("")){
+                displayMessage("Type in a start date with format (yyyy-mm-dd)!");
+                return;
+            }if(fromInput.equals("")){
+                displayMessage("Type in an end date with format (yyyy-mm-dd)!")
+                return;
             }
-            ArrayList<String> pallet = db.findPalletsContainingCookieList(cookieName);
+            String cookieName = cookieNameList.getSelectedValue();
+            ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, toDate, fromDate, false);
             System.out.println(pallet.isEmpty());
             if (!pallet.isEmpty()) {
                 for (String p : pallet) {
@@ -176,20 +180,6 @@ public class SearchByDatePane extends BasicPane {
                 displayMessage("Pallets for " + cookieName + " is displayed");
                 palletResultList.setModel(palletResultListModel);
             }
-
-
-//            if(!(cookieChoice.getSelectedIndex() == 0)){
-//                String cookie = cookieChoice.getSelectedItem().toString();
-//               ArrayList<String> palletList = db.findPalletsContainingCookieList(cookie);
-//                for(String pallet : palletList){
-//                    palletResultListModel.addElement(pallet);
-//                }
-//                displayMessage("The list is displaying all pallets for cookie: "+ cookie);
-//                palletResultList.setModel(palletResultListModel);
-//            }else{
-//                displayMessage("Choose a cookie and search again");
-//                return;
-//            }
         }
     }
 

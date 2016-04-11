@@ -42,14 +42,6 @@ public class SearchCookiePane extends BasicPane {
 
     public JComponent createTopPanel() {
         JPanel p = new JPanel();
-//        p1.setLayout(new FlowLayout(FlowLayout.LEFT));
-//        p1.add(new JLabel("Chosen cookie: "));
-//        cookieNameLabel = new JLabel("");
-//        p1.add(cookieNameLabel);
-//
-//        JPanel p = new JPanel();
-//        p.setLayout(new BoxLayout(p, BoxLayout.Y_AXIS));
-//        p.add(p1);
         return p;
     }
 
@@ -71,24 +63,7 @@ public class SearchCookiePane extends BasicPane {
     }
 
     public JComponent createLeftPanel() {
-//        JPanel p = new JPanel();
-//        p.setLayout(new GridLayout(1,1));
-//        JPanel comboBoxPane = new JPanel();
-//        comboBoxPane.setLayout(new GridLayout(3,1));
-//
-//        ArrayList<String> cookies = db.showCreatableCookies();
-//        String cookieBox[]= (String[]) cookies.toArray();
-//        cookieChoice = new JComboBox<String>(cookieBox);
-//        cookieChoice.setEditable(false);
-//        cookieChoice.addItemListener(new ItemHandler());
-//        comboBoxPane.add(cookieChoice);
-//
-//        JButton block = new JButton("Block");
-//        block.addActionListener(new BlockActionListener());
-//        comboBoxPane.add(block);
-//
-//        p.add(comboBoxPane, BorderLayout.CENTER);
-//        return p;
+
         cookieListModel = new DefaultListModel<String>();
 
         cookieNameList = new JList<String>(cookieListModel);
@@ -97,18 +72,11 @@ public class SearchCookiePane extends BasicPane {
         cookieNameList.addListSelectionListener(new CookieSelectionListener());
         JScrollPane p1 = new JScrollPane(cookieNameList);
 
-//            dateListModel = new DefaultListModel<String>();
-
-//            dateList = new JList<String>(dateListModel);
-//            dateList.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-//            dateList.setPrototypeCellValue("123456789012");
-//            dateList.addListSelectionListener(new DateSelectionListener());
-//            JScrollPane p2 = new JScrollPane(dateList);
         JCheckBox block = new JCheckBox("Block the chosen cookie");
         block.addItemListener(new BlockItemListener());
 
         JPanel p = new JPanel();
-        p.setLayout(new GridLayout(2, 1)); //ViewportLayout()??
+        p.setLayout(new GridLayout(2, 1));
         p.add(p1);
         p.add(block);
         return p;
@@ -157,9 +125,6 @@ public class SearchCookiePane extends BasicPane {
                 return;
             }
             clearMessage();
-            String cookieName = cookieNameList.getSelectedValue();
-            System.out.println("Vi har tryckt på cookie: " + cookieName);
-//            cookieNameLabel.setText(cookieName);
         }
     }
 
