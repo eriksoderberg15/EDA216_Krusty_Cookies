@@ -41,25 +41,20 @@ public class ProducePane extends BasicPane {
             private JTextField[] fields;
 
             /**
-             * The number of the palletNbr field to show produced pallet.
-             */
-            private static final int PALLET_NBR = 0;
-
-            /**
              * The number of the cookie name field.
              */
-            private static final int COOKIE_NAME = 1;
+            private static final int COOKIE_NAME = 0;
 
             /**
              * The number of the date the pallet was produced field.
              */
-            private static final int PALLET_DATE = 2;
+            private static final int PALLET_DATE = 1;
 
 
             /**
              * The total number of fields.
              */
-            private static final int NBR_FIELDS = 3;
+            private static final int NBR_FIELDS = 2;
 
             /**
              * Create the Produce Pallets pane.
@@ -110,7 +105,6 @@ public class ProducePane extends BasicPane {
         public JComponent createTopPanel() {
             String[] texts = new String[NBR_FIELDS];
             texts[COOKIE_NAME] = "Cookie";
-            texts[PALLET_NBR] = "Pallet Number";
             texts[PALLET_DATE] = "Date";
 
 
@@ -123,7 +117,7 @@ public class ProducePane extends BasicPane {
             JPanel input = new InputPanel(texts, fields);
 
             JPanel p1 = new JPanel();
-            p1.setLayout(new FlowLayout(FlowLayout.LEFT));
+            p1.setLayout(new FlowLayout(FlowLayout.CENTER));
             p1.add(new JLabel("Chosen cookie: "));
             cookieNameLabel = new JLabel("");
             p1.add(cookieNameLabel);
@@ -177,8 +171,7 @@ public class ProducePane extends BasicPane {
      */
     private void fillFields(ArrayList<String> pallet) {
             fields[COOKIE_NAME].setText(pallet.get(0));
-            fields[PALLET_NBR].setText(pallet.get(1));
-            fields[PALLET_DATE].setText(pallet.get(2));
+            fields[PALLET_DATE].setText(pallet.get(1));
 
         }
 
