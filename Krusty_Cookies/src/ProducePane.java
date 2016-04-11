@@ -203,7 +203,6 @@ public class ProducePane extends BasicPane {
                 clearFields();
                 clearMessage();
                 String cookieName = cookieNameList.getSelectedValue();
-                System.out.println("Vi har tryckt på cookie: " + cookieName);
                 cookieNameLabel.setText(cookieName);
             }
         }

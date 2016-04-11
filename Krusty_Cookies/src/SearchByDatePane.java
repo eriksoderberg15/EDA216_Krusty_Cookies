@@ -144,9 +144,7 @@ public class SearchByDatePane extends BasicPane {
                 return;
             }
             clearMessage();
-            String cookieName = cookieNameList.getSelectedValue();
-            System.out.println("Vi har tryckt på cookie: " + cookieName);
-//            cookieNameLabel.setText(cookieName);
+//            String cookieName = cookieNameList.getSelectedValue();
         }
     }
 
