@@ -69,6 +69,7 @@ public class ProductionGUI {
         }
     }
 
+
     /**
      * ChangeHandler is a listener class, called when the user switches panes.
      */

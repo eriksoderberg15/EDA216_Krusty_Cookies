@@ -26,8 +26,8 @@
       <file leaf-file-name="Database.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Database.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-5079">
-              <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
+            <state relative-caret-position="4191">
+              <caret line="416" column="34" selection-start-line="416" selection-start-column="34" selection-end-line="416" selection-end-column="34" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#245#246#0" expanded="true" />
@@ -36,34 +36,34 @@
                 <element signature="e#1450#1451#0" expanded="true" />
                 <element signature="e#1626#1634#0" expanded="true" />
                 <element signature="e#2315#2323#0" expanded="true" />
-                <element signature="e#4301#4318#0" expanded="true" />
-                <element signature="e#7759#7767#0" expanded="true" />
-                <element signature="e#7877#7904#0" expanded="true" />
-                <element signature="e#9270#9297#0" expanded="true" />
-                <element signature="e#9351#9359#0" expanded="true" />
-                <element signature="e#10059#10068#0" expanded="true" />
-                <element signature="e#10497#10498#0" expanded="true" />
-                <element signature="e#10512#10513#0" expanded="true" />
-                <element signature="e#10628#10629#0" expanded="true" />
-                <element signature="e#10655#10656#0" expanded="true" />
-                <element signature="e#10693#10694#0" expanded="true" />
-                <element signature="e#10720#10721#0" expanded="true" />
-                <element signature="e#10942#10943#0" expanded="true" />
-                <element signature="e#10960#10961#0" expanded="true" />
-                <element signature="e#11928#11937#0" expanded="true" />
-                <element signature="e#12080#12089#0" expanded="true" />
-                <element signature="e#13389#13397#0" expanded="true" />
-                <marker date="1460363823000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
-                <marker date="1460363823000" expanded="true" signature="2517:2595" placeholder="INSERT INTO Pallets... " />
-                <marker date="1460363823000" expanded="true" signature="4447:4502" placeholder="SELECT * FRO... IngredientsInCookies" />
-                <marker date="1460363823000" expanded="true" signature="6474:6551" placeholder="UPDATE Ingre... " />
-                <marker date="1460363823000" expanded="true" signature="6965:7025" placeholder="SELECT stock... Ingredients" />
-                <marker date="1460363823000" expanded="true" signature="7977:8030" placeholder="SELECT * FRO... Pallets" />
-                <marker date="1460363823000" expanded="true" signature="8763:8841" placeholder="UPDATE Palle... " />
-                <marker date="1460363823000" expanded="true" signature="9388:9432" placeholder="SELECT * FRO... Pallets" />
-                <marker date="1460363823000" expanded="true" signature="10097:10158" placeholder="SELECT disti... Pallets" />
-                <marker date="1460363823000" expanded="true" signature="11100:11141" placeholder="SELECT * FRO... Pallets" />
-                <marker date="1460363823000" expanded="true" signature="13425:13467" placeholder="SELECT * FRO... Pallets" />
+                <element signature="e#4586#4603#0" expanded="true" />
+                <element signature="e#8044#8052#0" expanded="true" />
+                <element signature="e#8162#8189#0" expanded="true" />
+                <element signature="e#9564#9591#0" expanded="true" />
+                <element signature="e#9645#9653#0" expanded="true" />
+                <element signature="e#10353#10362#0" expanded="true" />
+                <element signature="e#10791#10792#0" expanded="true" />
+                <element signature="e#10806#10807#0" expanded="true" />
+                <element signature="e#10922#10923#0" expanded="true" />
+                <element signature="e#10949#10950#0" expanded="true" />
+                <element signature="e#10987#10988#0" expanded="true" />
+                <element signature="e#11014#11015#0" expanded="true" />
+                <element signature="e#11236#11237#0" expanded="true" />
+                <element signature="e#11254#11255#0" expanded="true" />
+                <element signature="e#12222#12231#0" expanded="true" />
+                <element signature="e#12374#12383#0" expanded="true" />
+                <element signature="e#13683#13691#0" expanded="true" />
+                <marker date="1460369448000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
+                <marker date="1460369448000" expanded="true" signature="2520:2584" placeholder="INSERT INTO Pallets... " />
+                <marker date="1460369448000" expanded="true" signature="4732:4787" placeholder="SELECT * FRO... IngredientsInCookies" />
+                <marker date="1460369448000" expanded="true" signature="6759:6836" placeholder="UPDATE Ingre... " />
+                <marker date="1460369448000" expanded="true" signature="7250:7310" placeholder="SELECT stock... Ingredients" />
+                <marker date="1460369448000" expanded="true" signature="8262:8315" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460369448000" expanded="true" signature="9052:9134" placeholder="UPDATE Palle... " />
+                <marker date="1460369448000" expanded="true" signature="9682:9726" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460369448000" expanded="true" signature="10391:10452" placeholder="SELECT disti... Pallets" />
+                <marker date="1460369448000" expanded="true" signature="11394:11435" placeholder="SELECT * FRO... Pallets" />
+                <marker date="1460369448000" expanded="true" signature="13719:13761" placeholder="SELECT * FRO... Pallets" />
               </folding>
             </state>
           </provider>
@@ -72,8 +72,8 @@
       <file leaf-file-name="SearchByDatePane.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SearchByDatePane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="147" column="9" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
+            <state relative-caret-position="333">
+              <caret line="172" column="18" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="e#1090#1091#0" expanded="true" />
@@ -86,8 +86,8 @@
       <file leaf-file-name="SearchPalletNbrPane.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/SearchPalletNbrPane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="49" column="37" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="37" />
+            <state relative-caret-position="195">
+              <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="101" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -96,18 +96,18 @@
       <file leaf-file-name="ProductionGUI.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ProductionGUI.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="585">
-              <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
+            <state relative-caret-position="408">
+              <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ProducePane.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="ProducePane.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/ProducePane.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="204" column="70" selection-start-line="204" selection-start-column="70" selection-end-line="204" selection-end-column="70" />
+            <state relative-caret-position="975">
+              <caret line="203" column="31" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -156,11 +156,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseSetUp" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DatabaseSetUp" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DatabaseSetUp">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="360">
-              <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
+            <state relative-caret-position="150">
+              <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="67" selection-end-column="2" />
               <folding />
             </state>
           </provider>
@@ -187,12 +187,12 @@
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/SearchAllPane.java" />
         <option value="$PROJECT_DIR$/src/SearchPalletNbrPane.java" />
-        <option value="$PROJECT_DIR$/src/ProductionGUI.java" />
         <option value="$PROJECT_DIR$/src/Database.java" />
         <option value="$PROJECT_DIR$/DatabaseSetUp" />
-        <option value="$PROJECT_DIR$/src/SearchByDatePane.java" />
         <option value="$PROJECT_DIR$/src/ProducePane.java" />
         <option value="$PROJECT_DIR$/src/SearchCookiePane.java" />
+        <option value="$PROJECT_DIR$/src/ProductionGUI.java" />
+        <option value="$PROJECT_DIR$/src/SearchByDatePane.java" />
       </list>
     </option>
   </component>
@@ -722,12 +722,12 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1460283930983</updated>
-      <workItem from="1460283932266" duration="45074000" />
+      <workItem from="1460283932266" duration="46960000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="45074000" />
+    <option name="totallyTimeSpent" value="46960000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="60" y="51" width="1172" height="762" extended-state="0" />
@@ -836,89 +836,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/ProductionGUI.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="585">
-          <caret line="56" column="24" selection-start-line="56" selection-start-column="24" selection-end-line="56" selection-end-column="24" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ER_diagram.jpg">
       <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/DatabaseSetUp">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="29" column="25" selection-start-line="29" selection-start-column="25" selection-end-line="29" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchPalletNbrPane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="49" column="37" selection-start-line="49" selection-start-column="31" selection-end-line="49" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/SearchByDatePane.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="147" column="9" selection-start-line="147" selection-start-column="9" selection-end-line="147" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1090#1091#0" expanded="true" />
-            <element signature="e#1115#1116#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/Database.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-5079">
-          <caret line="83" column="0" selection-start-line="83" selection-start-column="0" selection-end-line="83" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#245#246#0" expanded="true" />
-            <element signature="e#263#264#0" expanded="true" />
-            <element signature="e#1424#1425#0" expanded="true" />
-            <element signature="e#1450#1451#0" expanded="true" />
-            <element signature="e#1626#1634#0" expanded="true" />
-            <element signature="e#2315#2323#0" expanded="true" />
-            <element signature="e#4301#4318#0" expanded="true" />
-            <element signature="e#7759#7767#0" expanded="true" />
-            <element signature="e#7877#7904#0" expanded="true" />
-            <element signature="e#9270#9297#0" expanded="true" />
-            <element signature="e#9351#9359#0" expanded="true" />
-            <element signature="e#10059#10068#0" expanded="true" />
-            <element signature="e#10497#10498#0" expanded="true" />
-            <element signature="e#10512#10513#0" expanded="true" />
-            <element signature="e#10628#10629#0" expanded="true" />
-            <element signature="e#10655#10656#0" expanded="true" />
-            <element signature="e#10693#10694#0" expanded="true" />
-            <element signature="e#10720#10721#0" expanded="true" />
-            <element signature="e#10942#10943#0" expanded="true" />
-            <element signature="e#10960#10961#0" expanded="true" />
-            <element signature="e#11928#11937#0" expanded="true" />
-            <element signature="e#12080#12089#0" expanded="true" />
-            <element signature="e#13389#13397#0" expanded="true" />
-            <marker date="1460363823000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
-            <marker date="1460363823000" expanded="true" signature="2517:2595" placeholder="INSERT INTO Pallets... " />
-            <marker date="1460363823000" expanded="true" signature="4447:4502" placeholder="SELECT * FRO... IngredientsInCookies" />
-            <marker date="1460363823000" expanded="true" signature="6474:6551" placeholder="UPDATE Ingre... " />
-            <marker date="1460363823000" expanded="true" signature="6965:7025" placeholder="SELECT stock... Ingredients" />
-            <marker date="1460363823000" expanded="true" signature="7977:8030" placeholder="SELECT * FRO... Pallets" />
-            <marker date="1460363823000" expanded="true" signature="8763:8841" placeholder="UPDATE Palle... " />
-            <marker date="1460363823000" expanded="true" signature="9388:9432" placeholder="SELECT * FRO... Pallets" />
-            <marker date="1460363823000" expanded="true" signature="10097:10158" placeholder="SELECT disti... Pallets" />
-            <marker date="1460363823000" expanded="true" signature="11100:11141" placeholder="SELECT * FRO... Pallets" />
-            <marker date="1460363823000" expanded="true" signature="13425:13467" placeholder="SELECT * FRO... Pallets" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/SearchCookiePane.java">
@@ -935,11 +855,91 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/ProducePane.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="204" column="70" selection-start-line="204" selection-start-column="70" selection-end-line="204" selection-end-column="70" />
+        <state relative-caret-position="975">
+          <caret line="203" column="31" selection-start-line="203" selection-start-column="31" selection-end-line="203" selection-end-column="31" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/ProductionGUI.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="408">
+          <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchPalletNbrPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="93" column="1" selection-start-line="93" selection-start-column="1" selection-end-line="101" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Database.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4191">
+          <caret line="416" column="34" selection-start-line="416" selection-start-column="34" selection-end-line="416" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#245#246#0" expanded="true" />
+            <element signature="e#263#264#0" expanded="true" />
+            <element signature="e#1424#1425#0" expanded="true" />
+            <element signature="e#1450#1451#0" expanded="true" />
+            <element signature="e#1626#1634#0" expanded="true" />
+            <element signature="e#2315#2323#0" expanded="true" />
+            <element signature="e#4586#4603#0" expanded="true" />
+            <element signature="e#8044#8052#0" expanded="true" />
+            <element signature="e#8162#8189#0" expanded="true" />
+            <element signature="e#9564#9591#0" expanded="true" />
+            <element signature="e#9645#9653#0" expanded="true" />
+            <element signature="e#10353#10362#0" expanded="true" />
+            <element signature="e#10791#10792#0" expanded="true" />
+            <element signature="e#10806#10807#0" expanded="true" />
+            <element signature="e#10922#10923#0" expanded="true" />
+            <element signature="e#10949#10950#0" expanded="true" />
+            <element signature="e#10987#10988#0" expanded="true" />
+            <element signature="e#11014#11015#0" expanded="true" />
+            <element signature="e#11236#11237#0" expanded="true" />
+            <element signature="e#11254#11255#0" expanded="true" />
+            <element signature="e#12222#12231#0" expanded="true" />
+            <element signature="e#12374#12383#0" expanded="true" />
+            <element signature="e#13683#13691#0" expanded="true" />
+            <marker date="1460369448000" expanded="true" signature="1654:1684" placeholder="SELECT cooki... Cookies" />
+            <marker date="1460369448000" expanded="true" signature="2520:2584" placeholder="INSERT INTO Pallets... " />
+            <marker date="1460369448000" expanded="true" signature="4732:4787" placeholder="SELECT * FRO... IngredientsInCookies" />
+            <marker date="1460369448000" expanded="true" signature="6759:6836" placeholder="UPDATE Ingre... " />
+            <marker date="1460369448000" expanded="true" signature="7250:7310" placeholder="SELECT stock... Ingredients" />
+            <marker date="1460369448000" expanded="true" signature="8262:8315" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460369448000" expanded="true" signature="9052:9134" placeholder="UPDATE Palle... " />
+            <marker date="1460369448000" expanded="true" signature="9682:9726" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460369448000" expanded="true" signature="10391:10452" placeholder="SELECT disti... Pallets" />
+            <marker date="1460369448000" expanded="true" signature="11394:11435" placeholder="SELECT * FRO... Pallets" />
+            <marker date="1460369448000" expanded="true" signature="13719:13761" placeholder="SELECT * FRO... Pallets" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/SearchByDatePane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="333">
+          <caret line="172" column="18" selection-start-line="172" selection-start-column="18" selection-end-line="172" selection-end-column="18" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#1090#1091#0" expanded="true" />
+            <element signature="e#1115#1116#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/DatabaseSetUp">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="67" selection-end-column="2" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -108,6 +108,9 @@ public class SearchByDatePane extends BasicPane {
     public void entryActions() {
         clearMessage();
         fillNameList();
+        fromInput.setText("");
+        toInput.setText("");
+        palletResultListModel.removeAllElements();
     }
 
     /**
@@ -158,12 +161,17 @@ public class SearchByDatePane extends BasicPane {
                 displayMessage("Please select a cookie!");
                 return;
             }
-            String cookieName = cookieNameList.getSelectedValue();
-            if (blockcheck) {
-                System.out.println("BLOCK");
-                db.blockAllPallets(cookieName);
+                String toDate = toInput.getText();
+                String fromDate = fromInput.getText();
+            if(toInput.equals("")){
+                displayMessage("Type in a start date with format (yyyy-mm-dd)!");
+                return;
+            }if(fromInput.equals("")){
+                displayMessage("Type in an end date with format (yyyy-mm-dd)!")
+                return;
             }
-            ArrayList<String> pallet = db.findPalletsContainingCookieList(cookieName);
+            String cookieName = cookieNameList.getSelectedValue();
+            ArrayList<String> pallet = db.palletInfoForIntervall(cookieName, toDate, fromDate, false);
             System.out.println(pallet.isEmpty());
             if (!pallet.isEmpty()) {
                 for (String p : pallet) {
